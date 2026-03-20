@@ -49,7 +49,7 @@ export function CalorieSelect() {
               <button
                 key={t.id}
                 type="button"
-                className={`tier-card ${selected ? "selected" : ""}`}
+                className={`tier-card tier-${t.id} ${selected ? "selected" : ""}`}
                 onClick={() => {
                   setCalorieTier(t.id);
                   navigate("/menu");
