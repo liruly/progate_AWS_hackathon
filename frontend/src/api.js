@@ -1,6 +1,32 @@
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+// Amplifyではビルド時固定を避けるため、実行時に `/config.json` から API のベースURLを決めます。
+// 失敗時は開発用の `VITE_API_BASE_URL` にフォールバックします。
+let API_BASE_URL = null;
+let apiBaseUrlPromise = null;
+
+async function loadApiBaseUrl() {
+  if (API_BASE_URL) return API_BASE_URL;
+  if (apiBaseUrlPromise) return apiBaseUrlPromise;
+
+  apiBaseUrlPromise = (async () => {
+    try {
+      const res = await fetch("/config.json", { cache: "no-store" });
+      if (!res.ok) throw new Error(`config load failed: ${res.status}`);
+      const cfg = await res.json();
+      const next = cfg?.apiBaseUrl || cfg?.API_BASE_URL || cfg?.apiBaseURL;
+      if (!next) throw new Error("apiBaseUrl not found in /config.json");
+      API_BASE_URL = String(next).replace(/\/+$/, ""); // 末尾スラッシュ除去
+      return API_BASE_URL;
+    } catch (e) {
+      API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+      return API_BASE_URL;
+    }
+  })();
+
+  return apiBaseUrlPromise;
+}
 
 async function postJson(path, body) {
+  const apiBaseUrl = await loadApiBaseUrl();
   const res = await fetch(`${API_BASE_URL}${path}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -15,6 +41,7 @@ async function postJson(path, body) {
 }
 
 async function getJson(path) {
+  const apiBaseUrl = await loadApiBaseUrl();
   const res = await fetch(`${API_BASE_URL}${path}`);
   const data = await res.json().catch(() => ({}));
   if (!res.ok) {
