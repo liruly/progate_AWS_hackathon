@@ -1,0 +1,1064 @@
+[
+  {
+    "id": "drink_fatigue_low_sugar_vit",
+    "name": "疲労回復ビタミン炭酸",
+    "price_yen": 180,
+    "category": "beverage",
+    "moodTags": [
+      "sweet",
+      "refreshing"
+    ],
+    "nutrients": {
+      "protein_g": 0.5,
+      "fat_g": 0.2,
+      "vitamin_mg": 18,
+      "sugar_g": 7,
+      "calories_kcal": 55
+    }
+  },
+  {
+    "id": "drink_focus_caffeine_vb_mix",
+    "name": "集中サポート・カフェイン＆VB群",
+    "price_yen": 190,
+    "category": "beverage",
+    "moodTags": [
+      "refreshing",
+      "sour"
+    ],
+    "nutrients": {
+      "protein_g": 0.8,
+      "fat_g": 0.1,
+      "vitamin_mg": 22,
+      "sugar_g": 6,
+      "calories_kcal": 60
+    }
+  },
+  {
+    "id": "drink_diet_protein_shot",
+    "name": "プロテインショット（ダイエット寄せ）",
+    "price_yen": 220,
+    "category": "beverage",
+    "moodTags": [
+      "refreshing",
+      "sweet"
+    ],
+    "nutrients": {
+      "protein_g": 12,
+      "fat_g": 1.2,
+      "vitamin_mg": 8,
+      "sugar_g": 4,
+      "calories_kcal": 105
+    }
+  },
+  {
+    "id": "drink_muscle_fast_protein",
+    "name": "バルクアップ高速プロテイン",
+    "price_yen": 260,
+    "category": "beverage",
+    "moodTags": [
+      "sweet"
+    ],
+    "nutrients": {
+      "protein_g": 18,
+      "fat_g": 3.0,
+      "vitamin_mg": 10,
+      "sugar_g": 6,
+      "calories_kcal": 190
+    }
+  },
+  {
+    "id": "drink_sleepy_no_sugar_tea",
+    "name": "眠気スッキリ無糖茶",
+    "price_yen": 140,
+    "category": "beverage",
+    "moodTags": [
+      "refreshing",
+      "sour"
+    ],
+    "nutrients": {
+      "protein_g": 0.3,
+      "fat_g": 0.0,
+      "vitamin_mg": 12,
+      "sugar_g": 0.5,
+      "calories_kcal": 5
+    }
+  },
+  {
+    "id": "drink_vitamin_rich_syrup",
+    "name": "ビタミン入り清涼飲料",
+    "price_yen": 240,
+    "category": "beverage",
+    "moodTags": [
+      "sweet",
+      "sour"
+    ],
+    "nutrients": {
+      "protein_g": 1.0,
+      "fat_g": 0.2,
+      "vitamin_mg": 30,
+      "sugar_g": 9,
+      "calories_kcal": 95
+    }
+  },
+  {
+    "id": "drink_low_sugar_sports",
+    "name": "低糖スポーツ風",
+    "price_yen": 160,
+    "category": "beverage",
+    "moodTags": [
+      "sweet",
+      "refreshing"
+    ],
+    "nutrients": {
+      "protein_g": 0.7,
+      "fat_g": 0.3,
+      "vitamin_mg": 14,
+      "sugar_g": 5,
+      "calories_kcal": 65
+    }
+  },
+  {
+    "id": "food_greek_yogurt_protein",
+    "name": "ギリシャヨーグルト（プロテイン多め）",
+    "price_yen": 320,
+    "category": "food",
+    "moodTags": [
+      "sour",
+      "sweet"
+    ],
+    "nutrients": {
+      "protein_g": 20,
+      "fat_g": 5.5,
+      "vitamin_mg": 6,
+      "sugar_g": 6,
+      "calories_kcal": 180
+    }
+  },
+  {
+    "id": "food_chicken_salad_vit",
+    "name": "チキンサラダ（ビタミン寄せ）",
+    "price_yen": 450,
+    "category": "food",
+    "moodTags": [
+      "refreshing",
+      "sour"
+    ],
+    "nutrients": {
+      "protein_g": 28,
+      "fat_g": 7.0,
+      "vitamin_mg": 16,
+      "sugar_g": 8,
+      "calories_kcal": 260
+    }
+  },
+  {
+    "id": "food_rice_protein_bowl",
+    "name": "ライス×高たんぱくボウル",
+    "price_yen": 520,
+    "category": "food",
+    "moodTags": [
+      "spicy",
+      "sweet"
+    ],
+    "nutrients": {
+      "protein_g": 26,
+      "fat_g": 9.0,
+      "vitamin_mg": 10,
+      "sugar_g": 12,
+      "calories_kcal": 420
+    }
+  },
+  {
+    "id": "food_avocado_sandwich",
+    "name": "アボカドサンド（脂質良め）",
+    "price_yen": 480,
+    "category": "food",
+    "moodTags": [
+      "refreshing"
+    ],
+    "nutrients": {
+      "protein_g": 14,
+      "fat_g": 18.0,
+      "vitamin_mg": 12,
+      "sugar_g": 9,
+      "calories_kcal": 470
+    }
+  },
+  {
+    "id": "food_egg_wrap_protein",
+    "name": "たまごラップ（プロテイン）",
+    "price_yen": 360,
+    "category": "food",
+    "moodTags": [
+      "spicy",
+      "refreshing"
+    ],
+    "nutrients": {
+      "protein_g": 22,
+      "fat_g": 10.0,
+      "vitamin_mg": 8,
+      "sugar_g": 7,
+      "calories_kcal": 300
+    }
+  },
+  {
+    "id": "drink_muscle_carb_balance",
+    "name": "高炭水化物リキッドゼリー",
+    "price_yen": 230,
+    "category": "beverage",
+    "moodTags": [
+      "sweet"
+    ],
+    "nutrients": {
+      "protein_g": 6.0,
+      "fat_g": 1.5,
+      "vitamin_mg": 9,
+      "sugar_g": 16,
+      "calories_kcal": 160
+    }
+  },
+  {
+    "id": "food_salmon_omega_vit",
+    "name": "サーモン丼（オメガ寄せ）",
+    "price_yen": 650,
+    "category": "food",
+    "moodTags": [
+      "refreshing",
+      "sour"
+    ],
+    "nutrients": {
+      "protein_g": 32,
+      "fat_g": 16.0,
+      "vitamin_mg": 14,
+      "sugar_g": 10,
+      "calories_kcal": 610
+    }
+  },
+  {
+    "id": "drink_diet_green_smoothie",
+    "name": "グリーンスムージー低糖",
+    "price_yen": 340,
+    "category": "beverage",
+    "moodTags": [
+      "sour",
+      "refreshing"
+    ],
+    "nutrients": {
+      "protein_g": 7.5,
+      "fat_g": 2.0,
+      "vitamin_mg": 20,
+      "sugar_g": 6.0,
+      "calories_kcal": 130
+    }
+  },
+  {
+    "id": "food_tuna_poke_vit",
+    "name": "ツナポキ（ビタミン寄せ）",
+    "price_yen": 520,
+    "category": "food",
+    "moodTags": [
+      "sour",
+      "refreshing"
+    ],
+    "nutrients": {
+      "protein_g": 24,
+      "fat_g": 8.0,
+      "vitamin_mg": 18,
+      "sugar_g": 7.5,
+      "calories_kcal": 340
+    }
+  },
+  {
+    "id": "food_toast_fat_focus",
+    "name": "全粒トースト＆ナッツ（脂質少し）",
+    "price_yen": 380,
+    "category": "food",
+    "moodTags": [
+      "sweet"
+    ],
+    "nutrients": {
+      "protein_g": 10,
+      "fat_g": 14,
+      "vitamin_mg": 9,
+      "sugar_g": 11,
+      "calories_kcal": 420
+    }
+  },
+  {
+    "id": "drink_sugar_free_fatigue",
+    "name": "砂糖ゼロ炭酸（ビタミン入り）",
+    "price_yen": 170,
+    "category": "beverage",
+    "moodTags": [
+      "refreshing",
+      "sour"
+    ],
+    "nutrients": {
+      "protein_g": 0.6,
+      "fat_g": 0.0,
+      "vitamin_mg": 17,
+      "sugar_g": 0.3,
+      "calories_kcal": 15
+    }
+  },
+  {
+    "id": "food_protein_salad_low_cal",
+    "name": "プロテインサラダ（低カロリー寄せ）",
+    "price_yen": 410,
+    "category": "food",
+    "moodTags": [
+      "refreshing",
+      "sour"
+    ],
+    "nutrients": {
+      "protein_g": 24,
+      "fat_g": 4.0,
+      "vitamin_mg": 12,
+      "sugar_g": 5.0,
+      "calories_kcal": 220
+    }
+  },
+  {
+    "id": "drink_vitamin_sports_mix",
+    "name": "ビタミン入りスポーツ風",
+    "price_yen": 200,
+    "category": "beverage",
+    "moodTags": [
+      "sweet",
+      "refreshing"
+    ],
+    "nutrients": {
+      "protein_g": 1.2,
+      "fat_g": 0.4,
+      "vitamin_mg": 16,
+      "sugar_g": 10,
+      "calories_kcal": 100
+    }
+  },
+  {
+    "id": "food_beef_bowl_muscle",
+    "name": "牛丼っぽい高たんぱく（バルク寄せ）",
+    "price_yen": 590,
+    "category": "food",
+    "moodTags": [
+      "spicy",
+      "sweet"
+    ],
+    "nutrients": {
+      "protein_g": 30,
+      "fat_g": 14,
+      "vitamin_mg": 11,
+      "sugar_g": 13,
+      "calories_kcal": 640
+    }
+  },
+  {
+    "id": "drink_mood_sleepy_gaba",
+    "name": "眠気スッキリ（GABA風）",
+    "price_yen": 210,
+    "category": "beverage",
+    "moodTags": [
+      "sweet",
+      "refreshing"
+    ],
+    "nutrients": {
+      "protein_g": 0.4,
+      "fat_g": 0.1,
+      "vitamin_mg": 15,
+      "sugar_g": 5.5,
+      "calories_kcal": 80
+    }
+  },
+  {
+    "id": "food_edamame_protein",
+    "name": "枝豆＆豆タンパク",
+    "price_yen": 280,
+    "category": "food",
+    "moodTags": [
+      "refreshing",
+      "spicy"
+    ],
+    "nutrients": {
+      "protein_g": 18,
+      "fat_g": 3.5,
+      "vitamin_mg": 9,
+      "sugar_g": 4.0,
+      "calories_kcal": 160
+    }
+  },
+  {
+    "id": "food_soba_protein_vit",
+    "name": "そばサラダ（ビタミン寄せ）",
+    "price_yen": 420,
+    "category": "food",
+    "moodTags": [
+      "sour",
+      "refreshing"
+    ],
+    "nutrients": {
+      "protein_g": 16,
+      "fat_g": 5.0,
+      "vitamin_mg": 15,
+      "sugar_g": 7.0,
+      "calories_kcal": 260
+    }
+  },
+  {
+    "id": "drink_protein_low_fat",
+    "name": "高蛋白リキッド（低脂肪）",
+    "price_yen": 250,
+    "category": "beverage",
+    "moodTags": [
+      "sweet",
+      "refreshing"
+    ],
+    "nutrients": {
+      "protein_g": 20,
+      "fat_g": 1.0,
+      "vitamin_mg": 9,
+      "sugar_g": 3.5,
+      "calories_kcal": 120
+    }
+  },
+  {
+    "id": "food_oatmeal_energy",
+    "name": "オートミール（糖質エネルギー寄せ）",
+    "price_yen": 390,
+    "category": "food",
+    "moodTags": [
+      "sweet"
+    ],
+    "nutrients": {
+      "protein_g": 14,
+      "fat_g": 6.5,
+      "vitamin_mg": 8,
+      "sugar_g": 17,
+      "calories_kcal": 430
+    }
+  },
+  {
+    "id": "drink_focus_low_sugar_vit",
+    "name": "集中低糖ビタミン",
+    "price_yen": 180,
+    "category": "beverage",
+    "moodTags": [
+      "sour",
+      "refreshing"
+    ],
+    "nutrients": {
+      "protein_g": 0.6,
+      "fat_g": 0.1,
+      "vitamin_mg": 21,
+      "sugar_g": 3.2,
+      "calories_kcal": 35
+    }
+  },
+  {
+    "id": "food_chicken_rice_muscle",
+    "name": "鶏むね×ご飯（バルク寄せ）",
+    "price_yen": 610,
+    "category": "food",
+    "moodTags": [
+      "spicy",
+      "sweet"
+    ],
+    "nutrients": {
+      "protein_g": 34,
+      "fat_g": 7.5,
+      "vitamin_mg": 10,
+      "sugar_g": 14,
+      "calories_kcal": 600
+    }
+  },
+  {
+    "id": "food_fish_vitamin_diet",
+    "name": "白身魚定食風（ビタミン＆低糖）",
+    "price_yen": 520,
+    "category": "food",
+    "moodTags": [
+      "sour",
+      "refreshing"
+    ],
+    "nutrients": {
+      "protein_g": 28,
+      "fat_g": 6.5,
+      "vitamin_mg": 22,
+      "sugar_g": 6.5,
+      "calories_kcal": 330
+    }
+  },
+  {
+    "id": "drink_diet_ginger_vit",
+    "name": "ジンジャー風低糖ビタミン",
+    "price_yen": 150,
+    "category": "beverage",
+    "moodTags": [
+      "spicy",
+      "refreshing"
+    ],
+    "nutrients": {
+      "protein_g": 0.3,
+      "fat_g": 0.0,
+      "vitamin_mg": 16,
+      "sugar_g": 2.0,
+      "calories_kcal": 25
+    }
+  },
+  {
+    "id": "food_carb_balancer_snack",
+    "name": "軽食カーボバランサー",
+    "price_yen": 260,
+    "category": "food",
+    "moodTags": [
+      "sweet"
+    ],
+    "nutrients": {
+      "protein_g": 8,
+      "fat_g": 4.0,
+      "vitamin_mg": 10,
+      "sugar_g": 12,
+      "calories_kcal": 240
+    }
+  },
+  {
+    "id": "drink_muscle_high_cal_vit",
+    "name": "高カロリー・ビタミン入り清涼飲料",
+    "price_yen": 240,
+    "category": "beverage",
+    "moodTags": [
+      "sweet",
+      "refreshing"
+    ],
+    "nutrients": {
+      "protein_g": 8,
+      "fat_g": 3.8,
+      "vitamin_mg": 16,
+      "sugar_g": 18,
+      "calories_kcal": 260
+    }
+  },
+  {
+    "id": "food_tofu_salad_low_fat",
+    "name": "豆腐サラダ（低脂質）",
+    "price_yen": 340,
+    "category": "food",
+    "moodTags": [
+      "refreshing",
+      "sour"
+    ],
+    "nutrients": {
+      "protein_g": 16,
+      "fat_g": 2.5,
+      "vitamin_mg": 14,
+      "sugar_g": 5.0,
+      "calories_kcal": 180
+    }
+  },
+  {
+    "id": "food_onigiri_salmon",
+    "name": "焼き鮭おにぎり",
+    "price_yen": 180,
+    "category": "food",
+    "moodTags": [
+      "refreshing",
+      "sour"
+    ],
+    "nutrients": {
+      "protein_g": 6,
+      "fat_g": 2.5,
+      "vitamin_mg": 3,
+      "sugar_g": 22,
+      "calories_kcal": 190
+    }
+  },
+  {
+    "id": "food_onigiri_tuna",
+    "name": "シーチキンマヨおにぎり",
+    "price_yen": 170,
+    "category": "food",
+    "moodTags": [
+      "sweet",
+      "refreshing"
+    ],
+    "nutrients": {
+      "protein_g": 7,
+      "fat_g": 8,
+      "vitamin_mg": 2,
+      "sugar_g": 18,
+      "calories_kcal": 220
+    }
+  },
+  {
+    "id": "food_sandwich_ham",
+    "name": "ハム＆タマゴサンド",
+    "price_yen": 320,
+    "category": "food",
+    "moodTags": [
+      "sweet",
+      "refreshing"
+    ],
+    "nutrients": {
+      "protein_g": 16,
+      "fat_g": 14,
+      "vitamin_mg": 5,
+      "sugar_g": 9,
+      "calories_kcal": 380
+    }
+  },
+  {
+    "id": "food_sandwich_cutlet",
+    "name": "カツサンド",
+    "price_yen": 398,
+    "category": "food",
+    "moodTags": [
+      "sweet",
+      "spicy"
+    ],
+    "nutrients": {
+      "protein_g": 18,
+      "fat_g": 22,
+      "vitamin_mg": 4,
+      "sugar_g": 11,
+      "calories_kcal": 480
+    }
+  },
+  {
+    "id": "food_udon_cup",
+    "name": "カップうどん（かけ）",
+    "price_yen": 198,
+    "category": "food",
+    "moodTags": [
+      "refreshing",
+      "sour"
+    ],
+    "nutrients": {
+      "protein_g": 5,
+      "fat_g": 1.2,
+      "vitamin_mg": 2,
+      "sugar_g": 38,
+      "calories_kcal": 280
+    }
+  },
+  {
+    "id": "food_ramen_cup_light",
+    "name": "カップ麺（あっさり醤油）",
+    "price_yen": 220,
+    "category": "food",
+    "moodTags": [
+      "spicy",
+      "sour"
+    ],
+    "nutrients": {
+      "protein_g": 8,
+      "fat_g": 9,
+      "vitamin_mg": 3,
+      "sugar_g": 42,
+      "calories_kcal": 380
+    }
+  },
+  {
+    "id": "food_curry_bread",
+    "name": "カレーパン",
+    "price_yen": 198,
+    "category": "food",
+    "moodTags": [
+      "spicy",
+      "sweet"
+    ],
+    "nutrients": {
+      "protein_g": 9,
+      "fat_g": 12,
+      "vitamin_mg": 2,
+      "sugar_g": 24,
+      "calories_kcal": 420
+    }
+  },
+  {
+    "id": "food_cream_stew_bun",
+    "name": "クリームシチューパン",
+    "price_yen": 210,
+    "category": "food",
+    "moodTags": [
+      "sweet",
+      "refreshing"
+    ],
+    "nutrients": {
+      "protein_g": 8,
+      "fat_g": 15,
+      "vitamin_mg": 2,
+      "sugar_g": 16,
+      "calories_kcal": 390
+    }
+  },
+  {
+    "id": "food_karaage_pack",
+    "name": "からあげ弁当ミニ",
+    "price_yen": 398,
+    "category": "food",
+    "moodTags": [
+      "spicy",
+      "refreshing"
+    ],
+    "nutrients": {
+      "protein_g": 22,
+      "fat_g": 18,
+      "vitamin_mg": 4,
+      "sugar_g": 12,
+      "calories_kcal": 520
+    }
+  },
+  {
+    "id": "food_potato_salad",
+    "name": "ポテトサラダ",
+    "price_yen": 248,
+    "category": "food",
+    "moodTags": [
+      "sweet",
+      "refreshing"
+    ],
+    "nutrients": {
+      "protein_g": 4,
+      "fat_g": 16,
+      "vitamin_mg": 5,
+      "sugar_g": 8,
+      "calories_kcal": 320
+    }
+  },
+  {
+    "id": "food_fruit_jelly",
+    "name": "ミックスフルーツゼリー",
+    "price_yen": 158,
+    "category": "food",
+    "moodTags": [
+      "sweet",
+      "sour"
+    ],
+    "nutrients": {
+      "protein_g": 0.5,
+      "fat_g": 0,
+      "vitamin_mg": 6,
+      "sugar_g": 18,
+      "calories_kcal": 85
+    }
+  },
+  {
+    "id": "food_pudding",
+    "name": "なめらかプリン",
+    "price_yen": 178,
+    "category": "food",
+    "moodTags": [
+      "sweet"
+    ],
+    "nutrients": {
+      "protein_g": 4,
+      "fat_g": 7,
+      "vitamin_mg": 2,
+      "sugar_g": 16,
+      "calories_kcal": 180
+    }
+  },
+  {
+    "id": "food_annin",
+    "name": "杏仁豆腐",
+    "price_yen": 198,
+    "category": "food",
+    "moodTags": [
+      "sweet",
+      "refreshing"
+    ],
+    "nutrients": {
+      "protein_g": 2,
+      "fat_g": 4,
+      "vitamin_mg": 2,
+      "sugar_g": 20,
+      "calories_kcal": 160
+    }
+  },
+  {
+    "id": "drink_milk_coffee",
+    "name": "カフェオレ（紙パック）",
+    "price_yen": 138,
+    "category": "beverage",
+    "moodTags": [
+      "sweet",
+      "refreshing"
+    ],
+    "nutrients": {
+      "protein_g": 3,
+      "fat_g": 3.5,
+      "vitamin_mg": 4,
+      "sugar_g": 12,
+      "calories_kcal": 120
+    }
+  },
+  {
+    "id": "drink_oolong",
+    "name": "烏龍茶（500ml）",
+    "price_yen": 150,
+    "category": "beverage",
+    "moodTags": [
+      "refreshing",
+      "sour"
+    ],
+    "nutrients": {
+      "protein_g": 0,
+      "fat_g": 0,
+      "vitamin_mg": 2,
+      "sugar_g": 0,
+      "calories_kcal": 0
+    }
+  },
+  {
+    "id": "drink_black_tea_lemon",
+    "name": "レモンティー",
+    "price_yen": 160,
+    "category": "beverage",
+    "moodTags": [
+      "sweet",
+      "sour"
+    ],
+    "nutrients": {
+      "protein_g": 0,
+      "fat_g": 0,
+      "vitamin_mg": 8,
+      "sugar_g": 10,
+      "calories_kcal": 45
+    }
+  },
+  {
+    "id": "drink_apple_juice",
+    "name": "りんごジュース100%",
+    "price_yen": 180,
+    "category": "beverage",
+    "moodTags": [
+      "sweet",
+      "sour"
+    ],
+    "nutrients": {
+      "protein_g": 0.3,
+      "fat_g": 0,
+      "vitamin_mg": 5,
+      "sugar_g": 22,
+      "calories_kcal": 95
+    }
+  },
+  {
+    "id": "drink_vegetable_mix",
+    "name": "野菜ミックスジュース",
+    "price_yen": 198,
+    "category": "beverage",
+    "moodTags": [
+      "refreshing",
+      "sour"
+    ],
+    "nutrients": {
+      "protein_g": 1.2,
+      "fat_g": 0,
+      "vitamin_mg": 18,
+      "sugar_g": 14,
+      "calories_kcal": 70
+    }
+  },
+  {
+    "id": "drink_yogurt_drink",
+    "name": "飲むヨーグルト（加糖）",
+    "price_yen": 148,
+    "category": "beverage",
+    "moodTags": [
+      "sweet",
+      "sour"
+    ],
+    "nutrients": {
+      "protein_g": 2.5,
+      "fat_g": 1.5,
+      "vitamin_mg": 4,
+      "sugar_g": 15,
+      "calories_kcal": 95
+    }
+  },
+  {
+    "id": "drink_energy_small",
+    "name": "エナジードリンク（小缶）",
+    "price_yen": 198,
+    "category": "beverage",
+    "moodTags": [
+      "sweet",
+      "refreshing"
+    ],
+    "nutrients": {
+      "protein_g": 0,
+      "fat_g": 0,
+      "vitamin_mg": 12,
+      "sugar_g": 14,
+      "calories_kcal": 60
+    }
+  },
+  {
+    "id": "drink_mineral_water",
+    "name": "天然水（550ml）",
+    "price_yen": 100,
+    "category": "beverage",
+    "moodTags": [
+      "refreshing"
+    ],
+    "nutrients": {
+      "protein_g": 0,
+      "fat_g": 0,
+      "vitamin_mg": 0,
+      "sugar_g": 0,
+      "calories_kcal": 0
+    }
+  },
+  {
+    "id": "drink_tomato_juice",
+    "name": "トマトジュース",
+    "price_yen": 168,
+    "category": "beverage",
+    "moodTags": [
+      "sour",
+      "refreshing"
+    ],
+    "nutrients": {
+      "protein_g": 1.5,
+      "fat_g": 0,
+      "vitamin_mg": 14,
+      "sugar_g": 7,
+      "calories_kcal": 35
+    }
+  },
+  {
+    "id": "food_kimchi_pack",
+    "name": "白菜キムチ小パック",
+    "price_yen": 218,
+    "category": "food",
+    "moodTags": [
+      "spicy",
+      "sour"
+    ],
+    "nutrients": {
+      "protein_g": 2,
+      "fat_g": 1,
+      "vitamin_mg": 10,
+      "sugar_g": 4,
+      "calories_kcal": 45
+    }
+  },
+  {
+    "id": "food_pickles",
+    "name": "たくあん（カット）",
+    "price_yen": 128,
+    "category": "food",
+    "moodTags": [
+      "sour",
+      "refreshing"
+    ],
+    "nutrients": {
+      "protein_g": 0.5,
+      "fat_g": 0.1,
+      "vitamin_mg": 2,
+      "sugar_g": 8,
+      "calories_kcal": 35
+    }
+  },
+  {
+    "id": "food_cheese_stick",
+    "name": "チーズスティック",
+    "price_yen": 198,
+    "category": "food",
+    "moodTags": [
+      "sweet",
+      "refreshing"
+    ],
+    "nutrients": {
+      "protein_g": 12,
+      "fat_g": 14,
+      "vitamin_mg": 3,
+      "sugar_g": 2,
+      "calories_kcal": 220
+    }
+  },
+  {
+    "id": "food_fruit_sand",
+    "name": "フルーツサンド",
+    "price_yen": 420,
+    "category": "food",
+    "moodTags": [
+      "sweet",
+      "sour"
+    ],
+    "nutrients": {
+      "protein_g": 8,
+      "fat_g": 12,
+      "vitamin_mg": 8,
+      "sugar_g": 28,
+      "calories_kcal": 380
+    }
+  },
+  {
+    "id": "food_niku_man",
+    "name": "肉まん",
+    "price_yen": 198,
+    "category": "food",
+    "moodTags": [
+      "sweet",
+      "spicy"
+    ],
+    "nutrients": {
+      "protein_g": 11,
+      "fat_g": 9,
+      "vitamin_mg": 3,
+      "sugar_g": 22,
+      "calories_kcal": 320
+    }
+  },
+  {
+    "id": "food_anman",
+    "name": "あんまん",
+    "price_yen": 178,
+    "category": "food",
+    "moodTags": [
+      "sweet"
+    ],
+    "nutrients": {
+      "protein_g": 6,
+      "fat_g": 4,
+      "vitamin_mg": 2,
+      "sugar_g": 26,
+      "calories_kcal": 260
+    }
+  },
+  {
+    "id": "drink_iced_coffee_black",
+    "name": "ブラックコーヒー（ペット）",
+    "price_yen": 158,
+    "category": "beverage",
+    "moodTags": [
+      "refreshing",
+      "sour"
+    ],
+    "nutrients": {
+      "protein_g": 0.5,
+      "fat_g": 0,
+      "vitamin_mg": 3,
+      "sugar_g": 0,
+      "calories_kcal": 5
+    }
+  },
+  {
+    "id": "drink_matcha_latte",
+    "name": "抹茶ラテ",
+    "price_yen": 218,
+    "category": "beverage",
+    "moodTags": [
+      "sweet",
+      "refreshing"
+    ],
+    "nutrients": {
+      "protein_g": 4,
+      "fat_g": 5,
+      "vitamin_mg": 6,
+      "sugar_g": 16,
+      "calories_kcal": 180
+    }
+  }
+]
