@@ -1,8 +1,17 @@
+# App Runner: runtime は python311 を指定（python3 単体は非対応/非推奨で失敗することがある）
+# 参照: https://docs.aws.amazon.com/apprunner/latest/dg/service-source-code-python-releases.html
 version: 1.0
-runtime: python3
+runtime: python311
+
 build:
   commands:
     build:
-      - echo "Build started"
+      - python3 --version
+
 run:
-  command: echo "Hello World"
+  runtime-version: "3.11"
+  pre-run:
+    - python3 -m pip install --no-cache-dir -r requirements.txt
+  command: python3 -m uvicorn app.main:app --host 0.0.0.0 --port $PORT
+  network:
+    port: 8000
