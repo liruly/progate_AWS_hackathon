@@ -1,0 +1,13 @@
+version: 1.0
+
+# App Runner (Python 3.11 revised build) 対応:
+# 起動環境へ依存が引き継がれないことがあるため、run.pre-run で再インストールします。
+runtime: python311
+
+run:
+  pre-run:
+    - pip3 install -r requirements.txt
+  command: python3 -m uvicorn app.main:app --host 0.0.0.0 --port $PORT
+  network:
+    port: 8000
+
