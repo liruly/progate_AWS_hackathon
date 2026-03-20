@@ -36,7 +36,7 @@ export function CalorieSelect() {
     <AppShell step={3}>
       <section className="card page-section">
         <h1 className="hero-title" style={{ marginTop: 0 }}>
-          気分 2/2
+          カロリー
         </h1>
         <p className="hero-desc">
           ひと食分のカロリー感（ボリューム）に近いものを選んでください。ここでは金額の目安は出しません。献立が決まったあとに、各商品の栄養データから合計 kcal を算出します。
@@ -66,6 +66,12 @@ export function CalorieSelect() {
         <p className="hint" style={{ marginTop: 16, marginBottom: 0 }}>
           カードをタップするとおすすめメニューへ進みます。
         </p>
+
+        <div className="actions-row" style={{ marginTop: 24 }}>
+          <button type="button" onClick={() => navigate(-1)}>
+            戻る
+          </button>
+        </div>
       </section>
     </AppShell>
   );

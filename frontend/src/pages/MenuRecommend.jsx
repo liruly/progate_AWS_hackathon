@@ -120,6 +120,13 @@ export function MenuRecommend() {
         <div className="actions-row" style={{ marginTop: 12 }}>
           <button
             type="button"
+            onClick={() => navigate(-1)}
+            disabled={loading}
+          >
+            戻る
+          </button>
+          <button
+            type="button"
             onClick={() => {
               resetFlow();
               navigate("/store");
