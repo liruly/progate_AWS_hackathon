@@ -437,7 +437,7 @@ button.primary:hover:not(:disabled) {
 .flow-status {
   position: sticky;
   top: 0;
-  z-index: 1000;
+  z-index: 9999;
   background: rgba(248, 250, 252, 0.92);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
