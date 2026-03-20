@@ -1,13 +1,14 @@
 version: 1.0
 
-# App Runner (Python 3.11 revised build) 対応:
-# 起動環境へ依存が引き継がれないことがあるため、run.pre-run で再インストールします。
+# App Runner (Python 3.11 revised build):
+# - 依存は run.pre-run で起動環境に入れる（build だけだと引き継がれないことがある）
+# - ポート: コンソールの「サービスポート」と run.network.port、uvicorn の $PORT を揃える（ここでは 8000）
+# - ソースディレクトリが backend のとき、コンテナ内パスは多くの場合 /app/backend
 runtime: python311
 
 run:
   pre-run:
-    - pip3 install -r requirements.txt
+    - python3 -m pip install --no-cache-dir -r /app/backend/requirements.txt
   command: python3 -m uvicorn app.main:app --host 0.0.0.0 --port $PORT
   network:
     port: 8000
-
