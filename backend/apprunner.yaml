@@ -1,5 +1,5 @@
-# App Runner: runtime は python311（python3 は古い 3.8 系に紐づくことがあり、非対応エラーになる）
-# run.runtime-version は省略可。トップレベル runtime と二重指定すると検証エラーになることがある。
+# App Runner Python 3.11（ソースディレクトリ: backend）
+# - デプロイ失敗（ビルド成功後）: $PORT 不一致や CWD ずれでヘルスチェック落ちしやすい → 8000 固定 + /app/backend で実行
 version: 1.0
 runtime: python311
 
@@ -10,7 +10,7 @@ build:
 
 run:
   pre-run:
-    - python3 -m pip install --no-cache-dir -r requirements.txt
-  command: python3 -m uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    - sh -c "cd /app/backend && python3 -m pip install --no-cache-dir -r requirements.txt"
+  command: sh -c "cd /app/backend && exec python3 -m uvicorn app.main:app --host 0.0.0.0 --port 8000"
   network:
     port: 8000
