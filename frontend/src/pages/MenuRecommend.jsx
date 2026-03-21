@@ -64,7 +64,7 @@ function makeFallbackMeals() {
       mkProduct("dA2", "サラダチキン", "food", 420, 210, 20, 7, 8, 1),
       mkProduct("dA3", "カットフルーツ", "food", 260, 120, 2, 1, 12, 22),
     ],
-    "軽め"
+    "軽め",
   );
   const mealB = mkMeal(
     1100,
@@ -73,7 +73,7 @@ function makeFallbackMeals() {
       mkProduct("dB2", "サラダ", "food", 350, 110, 3, 5, 15, 6),
       mkProduct("dB3", "ドリンク", "beverage", 330, 90, 1, 0, 0, 14),
     ],
-    "バランス"
+    "バランス",
   );
   const mealC = mkMeal(
     1200,
@@ -82,7 +82,7 @@ function makeFallbackMeals() {
       mkProduct("dC2", "唐揚げ", "food", 380, 330, 20, 18, 2, 2),
       mkProduct("dC3", "スイーツ", "food", 300, 190, 3, 6, 0, 25),
     ],
-    "がっつり"
+    "がっつり",
   );
 
   return [mealA, mealB, mealC];
@@ -132,6 +132,9 @@ export function MenuRecommend() {
         </p>
 
         <div className="actions-row" style={{ marginTop: 12 }}>
+          <button type="button" onClick={() => navigate(-1)} disabled={loading}>
+            戻る
+          </button>
           <button
             type="button"
             onClick={() => {
@@ -149,6 +152,7 @@ export function MenuRecommend() {
 
         {!loading && meals.length > 0 ? (
           <div
+            className="menu-recommend-grid"
             style={{
               marginTop: 16,
               display: "grid",

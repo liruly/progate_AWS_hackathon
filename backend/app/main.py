@@ -166,4 +166,3 @@ def api_coupon_mock_scan(req: CouponScanMockRequest) -> CouponScanMockResponse:
         else:
             used = False
         return CouponScanMockResponse(used=used, ticketsRemaining=_TICKETS_REMAINING)
-

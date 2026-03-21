@@ -11,12 +11,12 @@ const MOODS = [
   { id: "refreshing", label: "さっぱり" },
 ];
 
-function Chip({ selected, onSelect, children }) {
+function Chip({ selected, onSelect, children, className }) {
   return (
     <div
       role="button"
       tabIndex={0}
-      className={`pill ${selected ? "selected" : ""}`}
+      className={`pill ${className || ""} ${selected ? "selected" : ""}`}
       onClick={onSelect}
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") {
@@ -52,14 +52,19 @@ export function MoodSelect() {
     <AppShell step={2}>
       <section className="card page-section">
         <h1 className="hero-title" style={{ marginTop: 0 }}>
-          気分 1/2
+          今日の気分は？
         </h1>
         <p className="hero-desc">味わいやキーワードで、いまの気分に近いものを選んでください。</p>
 
         <span className="section-label">タップで選択</span>
         <div className="chip-grid" style={{ marginBottom: 20 }}>
           {MOODS.map((m) => (
-            <Chip key={m.id} selected={m.id === moodTag} onSelect={() => setMoodTag(m.id)}>
+            <Chip
+              key={m.id}
+              selected={m.id === moodTag}
+              onSelect={() => setMoodTag(m.id)}
+              className={`mood-${m.id}`}
+            >
               {m.label}
             </Chip>
           ))}
@@ -69,7 +74,7 @@ export function MoodSelect() {
         <textarea
           className="mood-textarea"
           rows={3}
-          placeholder="例：甘いものが食べたい、辛めがいい、さっぱり系…"
+          placeholder="例：甘いものが食べたい、仕事疲れた、カラオケオールしたい…"
           value={moodNote}
           onChange={(e) => setMoodNote(e.target.value)}
           onBlur={applyGuessFromNote}
@@ -77,6 +82,9 @@ export function MoodSelect() {
         <p className="hint">※キーワードから気分を推測して、次の画面で反映します（簡易マッチ）。</p>
 
         <div className="actions-row">
+          <button type="button" onClick={() => navigate(-1)}>
+            戻る
+          </button>
           <button type="button" className="primary" onClick={onNext}>
             進む（気分 2/2）
           </button>

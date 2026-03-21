@@ -60,7 +60,7 @@ export function Redeem() {
               ? "引き換えが完了しました（デモ）。"
               : ticketsRemaining <= 0
                 ? "引換チケットがありません。"
-              : "（デモ）店舗で引換券をスキャンしてください。"}
+                : "（デモ）店舗で引換券をスキャンしてください。"}
         </p>
 
         <div style={{ marginTop: 16 }}>
