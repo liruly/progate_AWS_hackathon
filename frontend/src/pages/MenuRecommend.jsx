@@ -141,6 +141,7 @@ export function MenuRecommend() {
 
         {!loading && meals.length > 0 ? (
           <div
+            className="menu-recommend-grid"
             style={{
               marginTop: 16,
               display: "grid",
@@ -168,7 +169,7 @@ export function MenuRecommend() {
                   }
                 }}
               >
-                <div className="menu-summary card" style={{ marginTop: 0, background: "rgba(176,141,87,0.10)" }}>
+                <div className="menu-summary card" style={{ marginTop: 0, background: "rgba(251, 146, 60, 0.1)" }}>
                   <div className="menu-summary__row muted" style={{ fontSize: "0.85rem" }}>
                     <span>合計カロリー</span>
                     <span>{Math.round(m.totals.calories_kcal)} kcal</span>
