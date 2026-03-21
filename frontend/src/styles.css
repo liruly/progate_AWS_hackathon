@@ -379,6 +379,104 @@ button.primary:hover:not(:disabled) {
   margin-top: 0.5rem;
 }
 
+/* Menu recommend: 縦に3行、各行は左に商品チップ横並び・右に合計カロリー枠 */
+.menu-recommend-list {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin-top: 24px;
+}
+
+.menu-recommend-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  cursor: pointer;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.menu-recommend-row:last-child {
+  border-bottom: none;
+}
+
+.menu-recommend-items {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  flex: 1;
+  min-width: 0;
+}
+
+.menu-recommend-item {
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  padding: 8px 12px;
+  border-radius: 8px;
+  min-width: 150px;
+  flex: 1 1 150px;
+}
+
+.menu-recommend-item__name {
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: #374151;
+  font-size: 0.9rem;
+}
+
+.menu-recommend-item__reason {
+  color: #6b7280;
+  font-size: 0.75rem;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.menu-recommend-item__meta {
+  display: flex;
+  justify-content: space-between;
+  color: #4b5563;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.menu-recommend-calorie-wrap {
+  flex-shrink: 0;
+}
+
+.menu-recommend-calorie-box {
+  width: 120px;
+  height: 80px;
+  background-color: #ffffff;
+  border: 2px solid #f59e0b;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-recommend-calorie-box__label {
+  font-size: 0.75rem;
+  color: #666;
+}
+
+.menu-recommend-calorie-box__value {
+  font-weight: 700;
+  color: #444;
+}
+
+@media (max-width: 640px) {
+  .menu-recommend-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .menu-recommend-calorie-wrap {
+    align-self: center;
+  }
+}
+
 /* Nutrients */
 .nutrient-pre {
   font-family: var(--font-mono);
