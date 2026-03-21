@@ -50,9 +50,6 @@ export function Redeem() {
         <h1 className="hero-title" style={{ marginTop: 0 }}>
           引き換え
         </h1>
-        <p className="hero-desc">
-          サブスク会員の<strong>引換チケット</strong>で、選んだ店舗を起点に在庫がある場所で受け取る想定です（デモ）。
-        </p>
 
         <div className="ticket-banner">
           <div className="ticket-banner__title">サブスク引換チケット</div>
@@ -73,10 +70,10 @@ export function Redeem() {
           {loading
             ? "スキャン中…"
             : redeemed
-              ? "引き換えが完了しました（デモ）。"
+              ? "引き換えが完了しました。"
               : ticketsRemaining <= 0
                 ? "引換チケットがありません。"
-                : "（デモ）店舗で引換券をスキャンしてください。"}
+                : "店舗で引換券をスキャンしてください。"}
         </p>
 
         <div style={{ marginTop: 16 }}>
@@ -87,7 +84,7 @@ export function Redeem() {
             disabled={loading || redeemed || ticketsRemaining <= 0}
             style={{ display: "inline-block", marginTop: 12 }}
           >
-            {ticketsRemaining <= 0 ? "引換チケットなし" : redeemed ? "引き換え済み" : "引換券をスキャン（デモ）"}
+            {ticketsRemaining <= 0 ? "引換チケットなし" : redeemed ? "引き換え済み" : "引換券をスキャン"}
           </button>
         </div>
 
