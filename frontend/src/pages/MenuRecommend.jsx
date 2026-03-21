@@ -133,22 +133,22 @@ export function MenuRecommend() {
         {loading ? <p className="muted">メニューを生成しています…</p> : null}
 
         {!loading && meals.length > 0 ? (
-          <div
-            style={{
-              marginTop: 16,
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
-              gap: "0.85rem",
-            }}
-          >
+          <div style={{ display: "flex", flexDirection: "column", gap: "32px", marginTop: "24px" }}>
             {meals.map((m, idx) => (
               <div
                 key={idx}
                 role="button"
                 tabIndex={0}
                 aria-label="このセットを引き換える"
-                className="card"
-                style={{ background: "rgba(255,255,255,0.92)", padding: "1rem", cursor: "pointer" }}
+                style={{
+                  display: "flex",
+                  alignItems: "center", // 中央揃え
+                  justifyContent: "space-between",
+                  gap: "16px",
+                  cursor: "pointer",
+                  paddingBottom: "16px",
+                  borderBottom: idx !== meals.length - 1 ? "1px solid #e5e7eb" : "none",
+                }}
                 onClick={() => {
                   setMeal(m);
                   navigate("/redeem");
@@ -161,25 +161,55 @@ export function MenuRecommend() {
                   }
                 }}
               >
-                <div className="menu-summary card" style={{ marginTop: 0, background: "rgba(176,141,87,0.10)" }}>
-                  <div className="menu-summary__row muted" style={{ fontSize: "0.85rem" }}>
-                    <span>合計カロリー</span>
-                    <span>{Math.round(m.totals.calories_kcal)} kcal</span>
-                  </div>
+                {/* 左側：商品の詳細情報を横並びで表示（画像を削除） */}
+                <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", flex: 1 }}>
+                  {m.mealItems.map((p, pidx) => (
+                    <div 
+                      key={p.id}
+                      style={{
+                        backgroundColor: "#f9fafb", // 薄いグレーの背景
+                        border: "1px solid #e5e7eb", // 薄い枠線
+                        padding: "8px 12px",
+                        borderRadius: "8px",
+                        minWidth: "150px", // 最小幅を少し持たせて見やすく
+                        flex: "1 1 150px"  // 余白があれば横に広がる
+                      }}
+                    >
+                      {/* 商品名 */}
+                      <div style={{ fontWeight: "bold", marginBottom: "4px", color: "#374151", fontSize: "0.9rem" }}>
+                        {p.name}
+                      </div>
+                      {/* 商品の紹介（選ばれた理由など） */}
+                      <div style={{ color: "#6b7280", fontSize: "0.75rem", marginBottom: "8px", lineHeight: "1.4" }}>
+                        {m.explanations?.[pidx]?.reason}
+                      </div>
+                      {/* 値段とカロリー */}
+                      <div style={{ display: "flex", justifyContent: "space-between", color: "#4b5563", fontWeight: "bold", fontSize: "0.85rem" }}>
+                        <span>{p.price_yen}円</span>
+                        <span>{Math.round(p.nutrients.calories_kcal)} kcal</span>
+                      </div>
+                    </div>
+                  ))}
                 </div>
 
-                <div className="product-grid" style={{ marginTop: 14 }}>
-                  {m.mealItems.map((p, pidx) => (
-                    <article key={p.id} className="product-card">
-                      <h3 className="product-name">{p.name}</h3>
-                      <p className="product-meta">
-                        <span className="tag-inline">{formatCategory(p.category)}</span>
-                        {formatYen(p.price_yen)}
-                      </p>
-                      <p className="product-reason">{m.explanations?.[pidx]?.reason}</p>
-                      <p className="product-foot">{Math.round(p.nutrients.calories_kcal)} kcal</p>
-                    </article>
-                  ))}
+                {/* 右側：カロリー表示の枠のみ */}
+                <div style={{ flexShrink: 0 }}>
+                  <div
+                    style={{
+                      width: "120px",
+                      height: "80px",
+                      backgroundColor: "#ffffff",
+                      border: "2px solid #f59e0b",
+                      borderRadius: "12px",
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      justifyContent: "center"
+                    }}
+                  >
+                    <span style={{ fontSize: "0.75rem", color: "#666" }}>合計カロリー</span>
+                    <span style={{ fontWeight: "bold", color: "#444" }}>{Math.round(m.totals.calories_kcal)} kcal</span>
+                  </div>
                 </div>
               </div>
             ))}
