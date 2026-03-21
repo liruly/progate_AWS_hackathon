@@ -140,22 +140,14 @@ export function MenuRecommend() {
         {!loading && errorMsg ? <p className="muted">{errorMsg}</p> : null}
 
         {!loading && meals.length > 0 ? (
-          <div style={{ display: "flex", flexDirection: "column", gap: "32px", marginTop: "24px" }}>
+          <div className="menu-recommend-meals">
             {meals.map((m, idx) => (
               <div
                 key={idx}
                 role="button"
                 tabIndex={0}
                 aria-label="このセットを引き換える"
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  gap: "16px",
-                  cursor: "pointer",
-                  paddingBottom: "16px",
-                  borderBottom: idx !== meals.length - 1 ? "1px solid #e5e7eb" : "none",
-                }}
+                className="menu-recommend-meal"
                 onClick={() => {
                   setMeal(m);
                   navigate("/redeem");
@@ -168,19 +160,9 @@ export function MenuRecommend() {
                   }
                 }}
               >
-                <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", flex: 1 }}>
+                <div className="menu-recommend-meal-items">
                   {m.mealItems.map((p, pidx) => (
-                    <div
-                      key={p.id}
-                      style={{
-                        backgroundColor: "#f9fafb",
-                        border: "1px solid #e5e7eb",
-                        padding: "8px 12px",
-                        borderRadius: "8px",
-                        minWidth: "150px",
-                        flex: "1 1 150px",
-                      }}
-                    >
+                    <div key={p.id} className="menu-recommend-food-card">
                       <div style={{ fontWeight: "bold", marginBottom: "4px", color: "#374151", fontSize: "0.9rem" }}>
                         {p.name}
                       </div>
@@ -203,22 +185,10 @@ export function MenuRecommend() {
                   ))}
                 </div>
 
-                <div style={{ flexShrink: 0 }}>
-                  <div
-                    style={{
-                      width: "120px",
-                      height: "80px",
-                      backgroundColor: "#ffffff",
-                      border: "2px solid #f59e0b",
-                      borderRadius: "12px",
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <span style={{ fontSize: "0.75rem", color: "#666" }}>合計カロリー</span>
-                    <span style={{ fontWeight: "bold", color: "#444" }}>{Math.round(m.totals.calories_kcal)} kcal</span>
+                <div className="menu-recommend-calorie-wrap" style={{ flexShrink: 0 }}>
+                  <div className="menu-recommend-calorie-inner">
+                    <span className="menu-recommend-calorie-label">合計カロリー</span>
+                    <span className="menu-recommend-calorie-value">{Math.round(m.totals.calories_kcal)} kcal</span>
                   </div>
                 </div>
               </div>
