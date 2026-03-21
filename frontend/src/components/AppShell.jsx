@@ -17,9 +17,9 @@ export function AppShell({ step, children }) {
         <header className="app-top">
           <div className="app-top__brand">
             <Link to="/store" className="app-top__logo">
-              コンビニ
+              サブビニ
             </Link>
-            <span className="app-top__sub">サブスク献立（デモ）</span>
+            <span className="app-top__sub">サブスク献立</span>
           </div>
           <div className="ticket-pill" title="サブスクの引換チケット">
             <span className="ticket-pill__icon">🎫</span>
@@ -28,7 +28,7 @@ export function AppShell({ step, children }) {
         </header>
         {children}
 
-        <p className="footer-note">本サービスはデモです。医療・栄養の個別アドバイスではありません。</p>
+        <p className="footer-note">本サービスは医療・栄養の個別アドバイスではありません。</p>
       </div>
     </div>
   );
