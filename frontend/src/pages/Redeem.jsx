@@ -7,6 +7,7 @@ import { useOrder } from "../context/OrderContext.jsx";
 export function Redeem() {
   const { store, meal, ticketsRemaining, consumeTicket, resetFlow } = useOrder();
   const [loading, setLoading] = useState(false);
+  const [couponId, setCouponId] = useState(null);
 
   useEffect(() => {
     if (!meal) return;
@@ -16,7 +17,10 @@ export function Redeem() {
     // デモ: スキャンはUIに出さず、成功したらチケットだけ減算する
     const ids = meal.mealItems.map((p) => p.id);
     apiCouponMock({ mealItems: ids })
-      .then((res) => apiCouponMockScan({ couponId: res?.couponId }))
+      .then((res) => {
+        setCouponId(res?.couponId);
+        return apiCouponMockScan({ couponId: res?.couponId });
+      })
       .then((scanRes) => {
         if (cancelled) return;
         if (scanRes?.used) {
@@ -34,6 +38,12 @@ export function Redeem() {
       cancelled = true;
     };
   }, [meal, consumeTicket, ticketsRemaining]);
+
+  useEffect(() => {
+    if (couponId) {
+      JsBarcode("#barcode", couponId);
+    }
+  }, [couponId]);
 
   if (!store) {
     return <Navigate to="/store" replace />;
@@ -60,6 +70,9 @@ export function Redeem() {
             残り <strong>{ticketsRemaining}</strong> 枚
           </p>
         </div>
+        
+        {couponId && <div style={{ display: 'flex', justifyContent: 'center' }}><svg id="barcode"></svg></div>}
+
         <p className="muted" style={{ marginTop: 16 }}>
           {loading ? "処理中…" : "（デモ）引き換え準備が完了しました。"}
         </p>
