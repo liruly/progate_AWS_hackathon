@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from threading import Lock
+
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -23,6 +25,9 @@ from .schemas import (
 
 
 app = FastAPI(title="Hackathon Nutrition Suggest API")
+
+_TICKETS_REMAINING = 3  # デモ用（プロセス内保持）。本番では永続化が必要。
+_TICKETS_LOCK = Lock()
 
 app.add_middleware(
     CORSMiddleware,
@@ -151,6 +156,14 @@ def api_coupon_mock(req: CheckoutCouponMockRequest) -> CouponMockResponse:
 
 @app.post("/api/checkout/coupon/mock/scan", response_model=CouponScanMockResponse)
 def api_coupon_mock_scan(req: CouponScanMockRequest) -> CouponScanMockResponse:
-    # デモ用: バーコードがスキャンされたら「使用された」とする
-    return CouponScanMockResponse(used=True)
+    # デモ用: バーコードがスキャンされたら「使用された」扱いにする
+    # ※残数もサーバー側で保持して返す（進捗表示/画面遷移で勝手に減らないため）
+    global _TICKETS_REMAINING
+    with _TICKETS_LOCK:
+        if _TICKETS_REMAINING > 0:
+            _TICKETS_REMAINING -= 1
+            used = True
+        else:
+            used = False
+        return CouponScanMockResponse(used=used, ticketsRemaining=_TICKETS_REMAINING)
 

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { AppShell } from "../components/AppShell.jsx";
 import { useOrder } from "../context/OrderContext.jsx";
+import { apiSuggestMeals } from "../api.js";
 
 function formatYen(n) {
   return `${Math.round(n).toLocaleString("ja-JP")}円`;
@@ -15,7 +16,7 @@ function formatCategory(cat) {
 
 const TIER_LABEL = { light: "ヘルシー", normal: "普通", hearty: "がっつり" };
 
-function makeDummyMeals() {
+function makeFallbackMeals() {
   // UIに必要なフィールドだけを最低限埋めるダミー候補（合計1000〜1200円）
   /** @type {Array<{ id: string, name: string, category: string, price_yen: number, nutrients: any }>} */
   const mkProduct = (id, name, category, price_yen, calories, protein_g, fat_g, vitamin_mg, sugar_g) => ({
@@ -89,19 +90,32 @@ function makeDummyMeals() {
 
 export function MenuRecommend() {
   const navigate = useNavigate();
-  const { store, calorieTier, setMeal, resetFlow } = useOrder();
+  const { store, moodTag, calorieTier, setMeal, resetFlow } = useOrder();
   const [loading, setLoading] = useState(true);
   const [meals, setMeals] = useState([]);
+  const [errorMsg, setErrorMsg] = useState("");
 
   useEffect(() => {
     if (!store || !calorieTier) return;
 
     setMeals([]);
     setMeal(null);
+    setErrorMsg("");
     setLoading(true);
-    setMeals(makeDummyMeals());
-    setLoading(false);
-  }, [store, calorieTier, setMeals, setMeal]);
+    (async () => {
+      try {
+        const res = await apiSuggestMeals({ moodTag, calorieTier, topN: 3 });
+        setMeals(res?.meals ?? []);
+      } catch (e) {
+        // 開発/デモ用途: API呼び出し失敗時は見せるためフォールバック
+        console.error(e);
+        setErrorMsg("メニュー生成に失敗しました。デモ用の候補を表示します。");
+        setMeals(makeFallbackMeals());
+      } finally {
+        setLoading(false);
+      }
+    })();
+  }, [store, moodTag, calorieTier, setMeal]);
 
   if (!store || !calorieTier) {
     return <Navigate to="/store" replace />;
@@ -131,6 +145,7 @@ export function MenuRecommend() {
         </div>
 
         {loading ? <p className="muted">メニューを生成しています…</p> : null}
+        {!loading && errorMsg ? <p className="muted">{errorMsg}</p> : null}
 
         {!loading && meals.length > 0 ? (
           <div

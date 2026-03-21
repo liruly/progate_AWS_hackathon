@@ -30,8 +30,9 @@ export function OrderProvider({ children }) {
     setCoupon(null);
   }, []);
 
-  const consumeTicket = useCallback(() => {
-    setTicketsRemaining((n) => Math.max(0, n - 1));
+  // サーバー側（スキャン処理）をソース・オブ・トゥルースとして同期する（デモではプロセス内保持）
+  const syncTicketsRemaining = useCallback((nextRemaining) => {
+    setTicketsRemaining(Math.max(0, Number(nextRemaining) || 0));
   }, []);
 
   const value = useMemo(
@@ -49,7 +50,7 @@ export function OrderProvider({ children }) {
       coupon,
       setCoupon,
       ticketsRemaining,
-      consumeTicket,
+      syncTicketsRemaining,
       resetFlow,
     }),
     [
@@ -60,7 +61,7 @@ export function OrderProvider({ children }) {
       meal,
       coupon,
       ticketsRemaining,
-      consumeTicket,
+      syncTicketsRemaining,
       resetFlow,
     ],
   );

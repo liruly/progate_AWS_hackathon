@@ -101,4 +101,5 @@ class CouponScanMockRequest(BaseModel):
 
 class CouponScanMockResponse(BaseModel):
     used: bool
+    ticketsRemaining: int = 0
 
