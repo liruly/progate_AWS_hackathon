@@ -4,16 +4,6 @@ import { AppShell } from "../components/AppShell.jsx";
 import { useOrder } from "../context/OrderContext.jsx";
 import { apiSuggestMeals } from "../api.js";
 
-function formatYen(n) {
-  return `${Math.round(n).toLocaleString("ja-JP")}円`;
-}
-
-function formatCategory(cat) {
-  if (cat === "beverage") return "飲料";
-  if (cat === "food") return "食品";
-  return cat;
-}
-
 const TIER_LABEL = { light: "ヘルシー", normal: "普通", hearty: "がっつり" };
 
 function makeFallbackMeals() {
@@ -107,7 +97,6 @@ export function MenuRecommend() {
         const res = await apiSuggestMeals({ moodTag, calorieTier, topN: 3 });
         setMeals(res?.meals ?? []);
       } catch (e) {
-        // 開発/デモ用途: API呼び出し失敗時は見せるためフォールバック
         console.error(e);
         setErrorMsg("メニュー生成に失敗しました。デモ用の候補を表示します。");
         setMeals(makeFallbackMeals());
@@ -151,23 +140,22 @@ export function MenuRecommend() {
         {!loading && errorMsg ? <p className="muted">{errorMsg}</p> : null}
 
         {!loading && meals.length > 0 ? (
-          <div
-            className="menu-recommend-grid"
-            style={{
-              marginTop: 16,
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
-              gap: "0.85rem",
-            }}
-          >
+          <div style={{ display: "flex", flexDirection: "column", gap: "32px", marginTop: "24px" }}>
             {meals.map((m, idx) => (
               <div
                 key={idx}
                 role="button"
                 tabIndex={0}
                 aria-label="このセットを引き換える"
-                className="card"
-                style={{ background: "rgba(255,255,255,0.92)", padding: "1rem", cursor: "pointer" }}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  gap: "16px",
+                  cursor: "pointer",
+                  paddingBottom: "16px",
+                  borderBottom: idx !== meals.length - 1 ? "1px solid #e5e7eb" : "none",
+                }}
                 onClick={() => {
                   setMeal(m);
                   navigate("/redeem");
@@ -180,28 +168,58 @@ export function MenuRecommend() {
                   }
                 }}
               >
-                <div
-                  className="menu-summary card"
-                  style={{ marginTop: 0, background: "rgba(251, 146, 60, 0.1)" }}
-                >
-                  <div className="menu-summary__row muted" style={{ fontSize: "0.85rem" }}>
-                    <span>合計カロリー</span>
-                    <span>{Math.round(m.totals.calories_kcal)} kcal</span>
-                  </div>
+                <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", flex: 1 }}>
+                  {m.mealItems.map((p, pidx) => (
+                    <div
+                      key={p.id}
+                      style={{
+                        backgroundColor: "#f9fafb",
+                        border: "1px solid #e5e7eb",
+                        padding: "8px 12px",
+                        borderRadius: "8px",
+                        minWidth: "150px",
+                        flex: "1 1 150px",
+                      }}
+                    >
+                      <div style={{ fontWeight: "bold", marginBottom: "4px", color: "#374151", fontSize: "0.9rem" }}>
+                        {p.name}
+                      </div>
+                      <div style={{ color: "#6b7280", fontSize: "0.75rem", marginBottom: "8px", lineHeight: "1.4" }}>
+                        {m.explanations?.[pidx]?.reason}
+                      </div>
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          color: "#4b5563",
+                          fontWeight: "bold",
+                          fontSize: "0.85rem",
+                        }}
+                      >
+                        <span>{p.price_yen}円</span>
+                        <span>{Math.round(p.nutrients.calories_kcal)} kcal</span>
+                      </div>
+                    </div>
+                  ))}
                 </div>
 
-                <div className="product-grid" style={{ marginTop: 14 }}>
-                  {m.mealItems.map((p, pidx) => (
-                    <article key={p.id} className="product-card">
-                      <h3 className="product-name">{p.name}</h3>
-                      <p className="product-meta">
-                        <span className="tag-inline">{formatCategory(p.category)}</span>
-                        {formatYen(p.price_yen)}
-                      </p>
-                      <p className="product-reason">{m.explanations?.[pidx]?.reason}</p>
-                      <p className="product-foot">{Math.round(p.nutrients.calories_kcal)} kcal</p>
-                    </article>
-                  ))}
+                <div style={{ flexShrink: 0 }}>
+                  <div
+                    style={{
+                      width: "120px",
+                      height: "80px",
+                      backgroundColor: "#ffffff",
+                      border: "2px solid #f59e0b",
+                      borderRadius: "12px",
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <span style={{ fontSize: "0.75rem", color: "#666" }}>合計カロリー</span>
+                    <span style={{ fontWeight: "bold", color: "#444" }}>{Math.round(m.totals.calories_kcal)} kcal</span>
+                  </div>
                 </div>
               </div>
             ))}
