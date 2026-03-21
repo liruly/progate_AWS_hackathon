@@ -68,9 +68,20 @@ export function apiSuggestMeal({ moodTag, calorieTier, goal = "balanced", budget
   return postJson("/api/suggest/meal", body);
 }
 
-export function apiSuggestMeals({ moodTag, calorieTier, goal = "balanced", topN = 3 }) {
+export function apiSuggestMeals({
+  moodTag,
+  calorieTier,
+  goal = "balanced",
+  topN = 3,
+  temperature,
+  useVectorFeatures,
+  seed,
+}) {
   const body = { moodTag, goal, topN };
   if (calorieTier) body.calorieTier = calorieTier;
+  if (temperature !== undefined) body.temperature = temperature;
+  if (useVectorFeatures !== undefined) body.useVectorFeatures = useVectorFeatures;
+  if (seed !== undefined) body.seed = seed;
   return postJson("/api/suggest/meals", body);
 }
 

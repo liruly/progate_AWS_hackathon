@@ -1,40 +1,22 @@
 from __future__ import annotations
 
+import math
+import random
+from collections import defaultdict
 from dataclasses import dataclass
 from typing import Iterable, Optional
 
 from ..data_loader import get_nutrient_stats
 from ..schemas import Nutrients, Product, ProductExplanation
+from .feature_vectors import cosine_similarity_dict, goal_center_vector, meal_normalized_vector
 from .goals import NUTRIENT_KEYS, get_goal_config
+from .nutrient_norm import normalize_nutrients
 
 
 @dataclass(frozen=True)
 class DeficitResult:
     total_deficit: float
     per_nutrient: dict[str, float]  # nutrient -> deficit distance (0..)
-
-
-def _clamp01(x: float) -> float:
-    if x < 0.0:
-        return 0.0
-    if x > 1.0:
-        return 1.0
-    return x
-
-
-def normalize_nutrients(n: Nutrients) -> dict[str, float]:
-    stats = get_nutrient_stats()
-
-    def norm(val: float, mn: float, mx: float) -> float:
-        return _clamp01((val - mn) / (mx - mn))
-
-    return {
-        "protein_g": norm(n.protein_g, stats.protein_g[0], stats.protein_g[1]),
-        "fat_g": norm(n.fat_g, stats.fat_g[0], stats.fat_g[1]),
-        "vitamin_mg": norm(n.vitamin_mg, stats.vitamin_mg[0], stats.vitamin_mg[1]),
-        "sugar_g": norm(n.sugar_g, stats.sugar_g[0], stats.sugar_g[1]),
-        "calories_kcal": norm(n.calories_kcal, stats.calories_kcal[0], stats.calories_kcal[1]),
-    }
 
 
 def compute_deficit(goal: str, totals: Nutrients) -> DeficitResult:
@@ -117,6 +99,69 @@ def _jp_mood(mood_tag: str) -> str:
         "sour": "酸っぱい",
         "refreshing": "さっぱり",
     }.get(mood_tag, mood_tag)
+
+
+def _overlap_with_used(
+    combo: tuple[float, list[Product], Nutrients, float],
+    used_ids: set[str],
+) -> int:
+    return len(used_ids.intersection({p.id for p in combo[1]}))
+
+
+def _select_meals_diverse(
+    pool: list[tuple[float, list[Product], Nutrients, float]],
+    k: int,
+    temperature: float,
+    rng: random.Random,
+) -> list[tuple[float, list[Product], Nutrients, float]]:
+    """
+    スコアと温度で献立を選ぶ。複数件のときは、既に選んだ献立と商品IDが重ならない組を優先する
+    （単品の栄養スコアが強い商品が複数候補にばかり入るのを防ぐ）。
+    重複ゼロの組が残っていないときは、**重複個数が最小**の組だけに絞ってから選ぶ（緩和時にまた同じ商品ばかり選ばない）。
+    """
+    if not pool:
+        return []
+    if k >= len(pool):
+        return list(pool)
+
+    remaining = sorted(pool, key=lambda x: x[0], reverse=True)
+    selected: list[tuple[float, list[Product], Nutrients, float]] = []
+    used_ids: set[str] = set()
+    usage_count: defaultdict[str, int] = defaultdict(int)
+
+    while len(selected) < k and remaining:
+        feasible = [c for c in remaining if not used_ids.intersection({p.id for p in c[1]})]
+        if not feasible:
+            overlaps = [_overlap_with_used(c, used_ids) for c in remaining]
+            min_o = min(overlaps)
+            feasible = [c for c, o in zip(remaining, overlaps) if o == min_o]
+        # 同じ重複数なら、すでに多く出たSKUを含む献立をやや下げる（ツナポキ等の定番偏り対策）
+        scores = [
+            float(c[0]) - 0.22 * sum(usage_count[p.id] for p in c[1])
+            for c in feasible
+        ]
+        if temperature <= 1e-9:
+            pick = feasible[max(range(len(feasible)), key=lambda i: scores[i])]
+        else:
+            m = max(scores)
+            logits = [(s - m) / temperature for s in scores]
+            exps = [math.exp(min(x, 20.0)) for x in logits]
+            total = sum(exps)
+            r = rng.random() * total
+            acc = 0.0
+            pick = feasible[0]
+            for i, e in enumerate(exps):
+                acc += e
+                if acc >= r:
+                    pick = feasible[i]
+                    break
+        selected.append(pick)
+        used_ids.update(p.id for p in pick[1])
+        for p in pick[1]:
+            usage_count[p.id] += 1
+        remaining.remove(pick)
+
+    return selected
 
 
 def suggest_products(
@@ -288,11 +333,19 @@ def suggest_meals(
     beam1: int = 80,
     beam2: int = 40,
     final_m: int = 5,
+    temperature: float = 0.75,
+    use_vector_features: bool = True,
+    seed: Optional[int] = None,
 ) -> list[tuple[list[Product], Nutrients, list[ProductExplanation], float]]:
     """
     おすすめメニューの複数候補を返す（合計金額を budgetMinYen..budgetMaxYen に絞る）。
+    temperature: 大きいほどスコアに関係なくバラつく（0 に近いと上位固定）。
+    use_vector_features: 正規化栄養ベクトルとゴール理想中心のコサイン類似度をスコアに加算。
     """
     from ..data_loader import load_products
+
+    rng = random.Random(seed) if seed is not None else random.Random()
+    vec_center = goal_center_vector(goal)
 
     all_products = [p for p in load_products() if p.price_yen <= budgetMaxYen]
     if not all_products:
@@ -321,6 +374,12 @@ def suggest_meals(
 
     if len(candidates) < 3:
         raise ValueError("献立用の候補が不足しています")
+
+    # スコア順のままだと同じSKUが常にビーム先頭に入り、献立が偏るので上位帯だけ順序を撹乱する
+    head_n = min(56, len(candidates))
+    head = candidates[:head_n]
+    rng.shuffle(head)
+    candidates = head + candidates[head_n:]
 
     beam1_list = candidates[: min(beam1, len(candidates))]
     n = len(beam1_list)
@@ -365,16 +424,27 @@ def suggest_meals(
             same_cat = sum(1 for k in cats if cats.count(k) >= 2)
             diversity_penalty = 0.1 * same_cat
 
-            combo_score = (-deficit) + (0.25 * mood_cov) - diversity_penalty
+            if use_vector_features:
+                mv = meal_normalized_vector(totals3)
+                vec_sim = cosine_similarity_dict(mv, vec_center)
+                combo_score = (-deficit) + (0.25 * vec_sim) + (0.25 * mood_cov) - diversity_penalty
+            else:
+                combo_score = (-deficit) + (0.25 * mood_cov) - diversity_penalty
             best_combos.append((combo_score, [items2[0], items2[1], c], totals3, total_price))
 
     if not best_combos:
         raise ValueError("合計金額が指定レンジに収まる3品組がありません")
 
     best_combos.sort(key=lambda x: x[0], reverse=True)
-    best_combos = best_combos[: min(final_m, len(best_combos))]
+    pool_cap = max(final_m, top_meals * 15) if temperature > 1e-9 else final_m
+    best_combos = best_combos[: min(pool_cap, len(best_combos))]
 
-    selected = best_combos[: min(top_meals, len(best_combos))]
+    selected = _select_meals_diverse(
+        best_combos,
+        min(top_meals, len(best_combos)),
+        temperature,
+        rng,
+    )
     results: list[tuple[list[Product], Nutrients, list[ProductExplanation], float]] = []
     for combo_score, items, totals, total_price in selected:
         explanations = _meal_to_explanations(goal, items, totals)

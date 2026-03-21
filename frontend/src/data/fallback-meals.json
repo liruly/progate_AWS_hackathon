@@ -1,0 +1,774 @@
+{
+  "meals": [
+    {
+      "mealItems": [
+        {
+          "id": "mock_fb_1a",
+          "name": "野菜スープ",
+          "category": "food",
+          "price_yen": 280,
+          "moodTags": [
+            "sweet",
+            "refreshing"
+          ],
+          "nutrients": {
+            "protein_g": 3,
+            "fat_g": 4,
+            "vitamin_mg": 14,
+            "sugar_g": 5,
+            "calories_kcal": 110
+          }
+        },
+        {
+          "id": "mock_fb_1b",
+          "name": "蒸し鶏サラダ",
+          "category": "food",
+          "price_yen": 390,
+          "moodTags": [
+            "sweet",
+            "refreshing"
+          ],
+          "nutrients": {
+            "protein_g": 22,
+            "fat_g": 6,
+            "vitamin_mg": 12,
+            "sugar_g": 4,
+            "calories_kcal": 240
+          }
+        },
+        {
+          "id": "mock_fb_1c",
+          "name": "乳酸菌ドリンク",
+          "category": "beverage",
+          "price_yen": 330,
+          "moodTags": [
+            "sweet",
+            "refreshing"
+          ],
+          "nutrients": {
+            "protein_g": 3,
+            "fat_g": 0,
+            "vitamin_mg": 2,
+            "sugar_g": 12,
+            "calories_kcal": 95
+          }
+        }
+      ],
+      "totals": {
+        "protein_g": 28,
+        "fat_g": 10,
+        "vitamin_mg": 28,
+        "sugar_g": 21,
+        "calories_kcal": 445
+      },
+      "explanations": [
+        {
+          "reason": "1：野菜スープ",
+          "matchedNutrients": []
+        },
+        {
+          "reason": "2：蒸し鶏サラダ",
+          "matchedNutrients": []
+        },
+        {
+          "reason": "3：乳酸菌ドリンク",
+          "matchedNutrients": []
+        }
+      ],
+      "totalPriceYen": 1000
+    },
+    {
+      "mealItems": [
+        {
+          "id": "mock_fb_2a",
+          "name": "おにぎり",
+          "category": "food",
+          "price_yen": 398,
+          "moodTags": [
+            "sour",
+            "refreshing"
+          ],
+          "nutrients": {
+            "protein_g": 9,
+            "fat_g": 11,
+            "vitamin_mg": 2,
+            "sugar_g": 6,
+            "calories_kcal": 320
+          }
+        },
+        {
+          "id": "mock_fb_2b",
+          "name": "ミックスサラダ",
+          "category": "food",
+          "price_yen": 342,
+          "moodTags": [
+            "sour",
+            "refreshing"
+          ],
+          "nutrients": {
+            "protein_g": 5,
+            "fat_g": 8,
+            "vitamin_mg": 18,
+            "sugar_g": 7,
+            "calories_kcal": 180
+          }
+        },
+        {
+          "id": "mock_fb_2c",
+          "name": "紅茶ラテ",
+          "category": "beverage",
+          "price_yen": 360,
+          "moodTags": [
+            "sour",
+            "refreshing"
+          ],
+          "nutrients": {
+            "protein_g": 4,
+            "fat_g": 6,
+            "vitamin_mg": 2,
+            "sugar_g": 18,
+            "calories_kcal": 220
+          }
+        }
+      ],
+      "totals": {
+        "protein_g": 18,
+        "fat_g": 25,
+        "vitamin_mg": 22,
+        "sugar_g": 31,
+        "calories_kcal": 720
+      },
+      "explanations": [
+        {
+          "reason": "1：おにぎり",
+          "matchedNutrients": []
+        },
+        {
+          "reason": "2：ミックスサラダ",
+          "matchedNutrients": []
+        },
+        {
+          "reason": "3：紅茶ラテ",
+          "matchedNutrients": []
+        }
+      ],
+      "totalPriceYen": 1100
+    },
+    {
+      "mealItems": [
+        {
+          "id": "mock_fb_3a",
+          "name": "チャーハン弁当",
+          "category": "food",
+          "price_yen": 520,
+          "moodTags": [
+            "spicy",
+            "sweet"
+          ],
+          "nutrients": {
+            "protein_g": 16,
+            "fat_g": 18,
+            "vitamin_mg": 3,
+            "sugar_g": 8,
+            "calories_kcal": 560
+          }
+        },
+        {
+          "id": "mock_fb_3b",
+          "name": "餃子",
+          "category": "food",
+          "price_yen": 280,
+          "moodTags": [
+            "spicy",
+            "sweet"
+          ],
+          "nutrients": {
+            "protein_g": 10,
+            "fat_g": 14,
+            "vitamin_mg": 1,
+            "sugar_g": 3,
+            "calories_kcal": 310
+          }
+        },
+        {
+          "id": "mock_fb_3c",
+          "name": "スープ春雨",
+          "category": "food",
+          "price_yen": 400,
+          "moodTags": [
+            "spicy",
+            "sweet"
+          ],
+          "nutrients": {
+            "protein_g": 4,
+            "fat_g": 3,
+            "vitamin_mg": 2,
+            "sugar_g": 5,
+            "calories_kcal": 180
+          }
+        }
+      ],
+      "totals": {
+        "protein_g": 30,
+        "fat_g": 35,
+        "vitamin_mg": 6,
+        "sugar_g": 16,
+        "calories_kcal": 1050
+      },
+      "explanations": [
+        {
+          "reason": "1：チャーハン弁当",
+          "matchedNutrients": []
+        },
+        {
+          "reason": "2：餃子",
+          "matchedNutrients": []
+        },
+        {
+          "reason": "3：スープ春雨",
+          "matchedNutrients": []
+        }
+      ],
+      "totalPriceYen": 1200
+    },
+    {
+      "mealItems": [
+        {
+          "id": "mock_fb_4a",
+          "name": "キムチ豚丼",
+          "category": "food",
+          "price_yen": 580,
+          "moodTags": [
+            "spicy",
+            "sour"
+          ],
+          "nutrients": {
+            "protein_g": 20,
+            "fat_g": 16,
+            "vitamin_mg": 5,
+            "sugar_g": 12,
+            "calories_kcal": 620
+          }
+        },
+        {
+          "id": "mock_fb_4b",
+          "name": "冷奴",
+          "category": "food",
+          "price_yen": 198,
+          "moodTags": [
+            "spicy",
+            "sour"
+          ],
+          "nutrients": {
+            "protein_g": 8,
+            "fat_g": 5,
+            "vitamin_mg": 2,
+            "sugar_g": 2,
+            "calories_kcal": 120
+          }
+        },
+        {
+          "id": "mock_fb_4c",
+          "name": "麦茶ペ",
+          "category": "beverage",
+          "price_yen": 222,
+          "moodTags": [
+            "spicy",
+            "sour"
+          ],
+          "nutrients": {
+            "protein_g": 0,
+            "fat_g": 0,
+            "vitamin_mg": 0,
+            "sugar_g": 0,
+            "calories_kcal": 0
+          }
+        }
+      ],
+      "totals": {
+        "protein_g": 28,
+        "fat_g": 21,
+        "vitamin_mg": 7,
+        "sugar_g": 14,
+        "calories_kcal": 740
+      },
+      "explanations": [
+        {
+          "reason": "1：キムチ豚丼",
+          "matchedNutrients": []
+        },
+        {
+          "reason": "2：冷奴",
+          "matchedNutrients": []
+        },
+        {
+          "reason": "3：麦茶ペ",
+          "matchedNutrients": []
+        }
+      ],
+      "totalPriceYen": 1000
+    },
+    {
+      "mealItems": [
+        {
+          "id": "mock_fb_5a",
+          "name": "冷やしうどん",
+          "category": "food",
+          "price_yen": 450,
+          "moodTags": [
+            "refreshing",
+            "sour"
+          ],
+          "nutrients": {
+            "protein_g": 9,
+            "fat_g": 3,
+            "vitamin_mg": 2,
+            "sugar_g": 22,
+            "calories_kcal": 380
+          }
+        },
+        {
+          "id": "mock_fb_5b",
+          "name": "大根サラダ",
+          "category": "food",
+          "price_yen": 260,
+          "moodTags": [
+            "refreshing",
+            "sour"
+          ],
+          "nutrients": {
+            "protein_g": 2,
+            "fat_g": 4,
+            "vitamin_mg": 8,
+            "sugar_g": 6,
+            "calories_kcal": 90
+          }
+        },
+        {
+          "id": "mock_fb_5c",
+          "name": "レモンスカッシュ",
+          "category": "beverage",
+          "price_yen": 310,
+          "moodTags": [
+            "refreshing",
+            "sour"
+          ],
+          "nutrients": {
+            "protein_g": 0.2,
+            "fat_g": 0,
+            "vitamin_mg": 4,
+            "sugar_g": 24,
+            "calories_kcal": 140
+          }
+        }
+      ],
+      "totals": {
+        "protein_g": 11.2,
+        "fat_g": 7,
+        "vitamin_mg": 14,
+        "sugar_g": 52,
+        "calories_kcal": 610
+      },
+      "explanations": [
+        {
+          "reason": "1：冷やしうどん",
+          "matchedNutrients": []
+        },
+        {
+          "reason": "2：大根サラダ",
+          "matchedNutrients": []
+        },
+        {
+          "reason": "3：レモンスカッシュ",
+          "matchedNutrients": []
+        }
+      ],
+      "totalPriceYen": 1020
+    },
+    {
+      "mealItems": [
+        {
+          "id": "mock_fb_6a",
+          "name": "プリン",
+          "category": "food",
+          "price_yen": 280,
+          "moodTags": [
+            "sweet",
+            "sour"
+          ],
+          "nutrients": {
+            "protein_g": 5,
+            "fat_g": 9,
+            "vitamin_mg": 2,
+            "sugar_g": 22,
+            "calories_kcal": 260
+          }
+        },
+        {
+          "id": "mock_fb_6b",
+          "name": "フルーツヨーグルト",
+          "category": "food",
+          "price_yen": 320,
+          "moodTags": [
+            "sweet",
+            "sour"
+          ],
+          "nutrients": {
+            "protein_g": 6,
+            "fat_g": 5,
+            "vitamin_mg": 6,
+            "sugar_g": 20,
+            "calories_kcal": 210
+          }
+        },
+        {
+          "id": "mock_fb_6c",
+          "name": "サンドイッチ",
+          "category": "food",
+          "price_yen": 420,
+          "moodTags": [
+            "sweet",
+            "sour"
+          ],
+          "nutrients": {
+            "protein_g": 14,
+            "fat_g": 16,
+            "vitamin_mg": 3,
+            "sugar_g": 8,
+            "calories_kcal": 410
+          }
+        }
+      ],
+      "totals": {
+        "protein_g": 25,
+        "fat_g": 30,
+        "vitamin_mg": 11,
+        "sugar_g": 50,
+        "calories_kcal": 880
+      },
+      "explanations": [
+        {
+          "reason": "1：プリン",
+          "matchedNutrients": []
+        },
+        {
+          "reason": "2：フルーツヨーグルト",
+          "matchedNutrients": []
+        },
+        {
+          "reason": "3：サンドイッチ",
+          "matchedNutrients": []
+        }
+      ],
+      "totalPriceYen": 1020
+    },
+    {
+      "mealItems": [
+        {
+          "id": "mock_fb_7a",
+          "name": "刺身盛り合わせ",
+          "category": "food",
+          "price_yen": 520,
+          "moodTags": [
+            "refreshing",
+            "sour"
+          ],
+          "nutrients": {
+            "protein_g": 28,
+            "fat_g": 8,
+            "vitamin_mg": 4,
+            "sugar_g": 4,
+            "calories_kcal": 320
+          }
+        },
+        {
+          "id": "mock_fb_7b",
+          "name": "わかめスープ",
+          "category": "food",
+          "price_yen": 180,
+          "moodTags": [
+            "refreshing",
+            "sour"
+          ],
+          "nutrients": {
+            "protein_g": 2,
+            "fat_g": 3,
+            "vitamin_mg": 3,
+            "sugar_g": 2,
+            "calories_kcal": 70
+          }
+        },
+        {
+          "id": "mock_fb_7c",
+          "name": "麦茶",
+          "category": "beverage",
+          "price_yen": 300,
+          "moodTags": [
+            "refreshing",
+            "sour"
+          ],
+          "nutrients": {
+            "protein_g": 0,
+            "fat_g": 0,
+            "vitamin_mg": 0,
+            "sugar_g": 0,
+            "calories_kcal": 0
+          }
+        }
+      ],
+      "totals": {
+        "protein_g": 30,
+        "fat_g": 11,
+        "vitamin_mg": 7,
+        "sugar_g": 6,
+        "calories_kcal": 390
+      },
+      "explanations": [
+        {
+          "reason": "1：刺身盛り合わせ",
+          "matchedNutrients": []
+        },
+        {
+          "reason": "2：わかめスープ",
+          "matchedNutrients": []
+        },
+        {
+          "reason": "3：麦茶",
+          "matchedNutrients": []
+        }
+      ],
+      "totalPriceYen": 1000
+    },
+    {
+      "mealItems": [
+        {
+          "id": "mock_fb_8a",
+          "name": "ハムチーズサンド",
+          "category": "food",
+          "price_yen": 420,
+          "moodTags": [
+            "sweet",
+            "refreshing"
+          ],
+          "nutrients": {
+            "protein_g": 18,
+            "fat_g": 22,
+            "vitamin_mg": 4,
+            "sugar_g": 10,
+            "calories_kcal": 480
+          }
+        },
+        {
+          "id": "mock_fb_8b",
+          "name": "コーンスープ",
+          "category": "food",
+          "price_yen": 280,
+          "moodTags": [
+            "sweet",
+            "refreshing"
+          ],
+          "nutrients": {
+            "protein_g": 4,
+            "fat_g": 8,
+            "vitamin_mg": 2,
+            "sugar_g": 6,
+            "calories_kcal": 160
+          }
+        },
+        {
+          "id": "mock_fb_8c",
+          "name": "オレンジジュース",
+          "category": "beverage",
+          "price_yen": 300,
+          "moodTags": [
+            "sweet",
+            "refreshing"
+          ],
+          "nutrients": {
+            "protein_g": 1,
+            "fat_g": 0,
+            "vitamin_mg": 24,
+            "sugar_g": 26,
+            "calories_kcal": 130
+          }
+        }
+      ],
+      "totals": {
+        "protein_g": 23,
+        "fat_g": 30,
+        "vitamin_mg": 30,
+        "sugar_g": 42,
+        "calories_kcal": 770
+      },
+      "explanations": [
+        {
+          "reason": "1：ハムチーズサンド",
+          "matchedNutrients": []
+        },
+        {
+          "reason": "2：コーンスープ",
+          "matchedNutrients": []
+        },
+        {
+          "reason": "3：オレンジジュース",
+          "matchedNutrients": []
+        }
+      ],
+      "totalPriceYen": 1000
+    },
+    {
+      "mealItems": [
+        {
+          "id": "mock_fb_9a",
+          "name": "ガパオライス",
+          "category": "food",
+          "price_yen": 580,
+          "moodTags": [
+            "spicy",
+            "sour"
+          ],
+          "nutrients": {
+            "protein_g": 22,
+            "fat_g": 18,
+            "vitamin_mg": 8,
+            "sugar_g": 14,
+            "calories_kcal": 720
+          }
+        },
+        {
+          "id": "mock_fb_9b",
+          "name": "春巻き",
+          "category": "food",
+          "price_yen": 220,
+          "moodTags": [
+            "spicy",
+            "sour"
+          ],
+          "nutrients": {
+            "protein_g": 6,
+            "fat_g": 12,
+            "vitamin_mg": 2,
+            "sugar_g": 4,
+            "calories_kcal": 260
+          }
+        },
+        {
+          "id": "mock_fb_9c",
+          "name": "ライチティー",
+          "category": "beverage",
+          "price_yen": 200,
+          "moodTags": [
+            "spicy",
+            "sour"
+          ],
+          "nutrients": {
+            "protein_g": 0,
+            "fat_g": 0,
+            "vitamin_mg": 1,
+            "sugar_g": 18,
+            "calories_kcal": 90
+          }
+        }
+      ],
+      "totals": {
+        "protein_g": 28,
+        "fat_g": 30,
+        "vitamin_mg": 11,
+        "sugar_g": 36,
+        "calories_kcal": 1070
+      },
+      "explanations": [
+        {
+          "reason": "1：ガパオライス",
+          "matchedNutrients": []
+        },
+        {
+          "reason": "2：春巻き",
+          "matchedNutrients": []
+        },
+        {
+          "reason": "3：ライチティー",
+          "matchedNutrients": []
+        }
+      ],
+      "totalPriceYen": 1000
+    },
+    {
+      "mealItems": [
+        {
+          "id": "mock_fb_10a",
+          "name": "カップラーメン",
+          "category": "food",
+          "price_yen": 238,
+          "moodTags": [
+            "sweet",
+            "spicy"
+          ],
+          "nutrients": {
+            "protein_g": 8,
+            "fat_g": 18,
+            "vitamin_mg": 1,
+            "sugar_g": 8,
+            "calories_kcal": 480
+          }
+        },
+        {
+          "id": "mock_fb_10b",
+          "name": "ウィンナー",
+          "category": "food",
+          "price_yen": 298,
+          "moodTags": [
+            "sweet",
+            "spicy"
+          ],
+          "nutrients": {
+            "protein_g": 12,
+            "fat_g": 24,
+            "vitamin_mg": 2,
+            "sugar_g": 4,
+            "calories_kcal": 340
+          }
+        },
+        {
+          "id": "mock_fb_10c",
+          "name": "乳酸菌飲料",
+          "category": "beverage",
+          "price_yen": 464,
+          "moodTags": [
+            "sweet",
+            "spicy"
+          ],
+          "nutrients": {
+            "protein_g": 4,
+            "fat_g": 0,
+            "vitamin_mg": 3,
+            "sugar_g": 20,
+            "calories_kcal": 120
+          }
+        }
+      ],
+      "totals": {
+        "protein_g": 24,
+        "fat_g": 42,
+        "vitamin_mg": 6,
+        "sugar_g": 32,
+        "calories_kcal": 940
+      },
+      "explanations": [
+        {
+          "reason": "1：カップラーメン",
+          "matchedNutrients": []
+        },
+        {
+          "reason": "2：ウィンナー",
+          "matchedNutrients": []
+        },
+        {
+          "reason": "3：乳酸菌飲料",
+          "matchedNutrients": []
+        }
+      ],
+      "totalPriceYen": 1000
+    }
+  ]
+}

@@ -3,79 +3,12 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { AppShell } from "../components/AppShell.jsx";
 import { useOrder } from "../context/OrderContext.jsx";
 import { apiSuggestMeals } from "../api.js";
+import fallbackMealsJson from "../data/fallback-meals.json";
 
 const TIER_LABEL = { light: "ヘルシー", normal: "普通", hearty: "がっつり" };
 
 function makeFallbackMeals() {
-  // UIに必要なフィールドだけを最低限埋めるダミー候補（合計1000〜1200円）
-  /** @type {Array<{ id: string, name: string, category: string, price_yen: number, nutrients: any }>} */
-  const mkProduct = (id, name, category, price_yen, calories, protein_g, fat_g, vitamin_mg, sugar_g) => ({
-    id,
-    name,
-    category,
-    price_yen,
-    moodTags: [],
-    nutrients: { protein_g, fat_g, vitamin_mg, sugar_g, calories_kcal: calories },
-  });
-
-  const sumTotals = (items) => {
-    const totals = {
-      protein_g: 0,
-      fat_g: 0,
-      vitamin_mg: 0,
-      sugar_g: 0,
-      calories_kcal: 0,
-    };
-    for (const p of items) {
-      totals.protein_g += p.nutrients.protein_g;
-      totals.fat_g += p.nutrients.fat_g;
-      totals.vitamin_mg += p.nutrients.vitamin_mg;
-      totals.sugar_g += p.nutrients.sugar_g;
-      totals.calories_kcal += p.nutrients.calories_kcal;
-    }
-    return totals;
-  };
-
-  const mkMeal = (priceTarget, products, reasonPrefix) => {
-    const totalPriceYen = products.reduce((a, p) => a + p.price_yen, 0);
-    const totals = sumTotals(products);
-    const explanations = products.map((p, idx) => ({
-      reason: `${reasonPrefix}${idx + 1}：${p.name} を入れたセットです。`,
-      matchedNutrients: [],
-    }));
-    return { mealItems: products, totals, explanations, totalPriceYen: totalPriceYen ?? priceTarget };
-  };
-
-  // 例: 1000, 1100, 1200
-  const mealA = mkMeal(
-    1000,
-    [
-      mkProduct("dA1", "野菜スープ", "food", 320, 95, 4, 2, 10, 3),
-      mkProduct("dA2", "サラダチキン", "food", 420, 210, 20, 7, 8, 1),
-      mkProduct("dA3", "カットフルーツ", "food", 260, 120, 2, 1, 12, 22),
-    ],
-    "軽め",
-  );
-  const mealB = mkMeal(
-    1100,
-    [
-      mkProduct("dB1", "おにぎり（鮭）", "food", 420, 230, 6, 3, 2, 1),
-      mkProduct("dB2", "サラダ", "food", 350, 110, 3, 5, 15, 6),
-      mkProduct("dB3", "ドリンク", "beverage", 330, 90, 1, 0, 0, 14),
-    ],
-    "バランス",
-  );
-  const mealC = mkMeal(
-    1200,
-    [
-      mkProduct("dC1", "焼きそば", "food", 520, 420, 12, 15, 0, 8),
-      mkProduct("dC2", "唐揚げ", "food", 380, 330, 20, 18, 2, 2),
-      mkProduct("dC3", "スイーツ", "food", 300, 190, 3, 6, 0, 25),
-    ],
-    "がっつり",
-  );
-
-  return [mealA, mealB, mealC];
+  return fallbackMealsJson.meals;
 }
 
 export function MenuRecommend() {
