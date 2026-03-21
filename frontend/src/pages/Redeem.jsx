@@ -18,7 +18,8 @@ export function Redeem() {
       const res = await apiCouponMock({ mealItems: ids });
       const scanRes = await apiCouponMockScan({ couponId: res?.couponId });
       if (scanRes?.used) {
-        syncTicketsRemaining(scanRes?.ticketsRemaining);
+        // デモ: 表示は常に「今の枚数 −1」（APIの残数が欠落/不整合でも 3→2→1→0 になる）
+        syncTicketsRemaining(ticketsRemaining - 1);
         setRedeemed(true);
       }
     } catch {
