@@ -225,6 +225,7 @@ import React, { useEffect, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { AppShell } from "../components/AppShell.jsx";
 import { useOrder } from "../context/OrderContext.jsx";
+import { apiSuggestMeals } from "../api.js";
 
 function formatYen(n) {
   return `${Math.round(n).toLocaleString("ja-JP")}円`;
@@ -238,7 +239,7 @@ function formatCategory(cat) {
 
 const TIER_LABEL = { light: "ヘルシー", normal: "普通", hearty: "がっつり" };
 
-function makeDummyMeals() {
+function makeFallbackMeals() {
   // UIに必要なフィールドだけを最低限埋めるダミー候補（合計1000〜1200円）
   /** @type {Array<{ id: string, name: string, category: string, price_yen: number, nutrients: any }>} */
   const mkProduct = (id, name, category, price_yen, calories, protein_g, fat_g, vitamin_mg, sugar_g) => ({
@@ -286,7 +287,7 @@ function makeDummyMeals() {
       mkProduct("dA2", "サラダチキン", "food", 420, 210, 20, 7, 8, 1),
       mkProduct("dA3", "カットフルーツ", "food", 260, 120, 2, 1, 12, 22),
     ],
-    "軽め"
+    "軽め",
   );
   const mealB = mkMeal(
     1100,
@@ -295,7 +296,7 @@ function makeDummyMeals() {
       mkProduct("dB2", "サラダ", "food", 350, 110, 3, 5, 15, 6),
       mkProduct("dB3", "ドリンク", "beverage", 330, 90, 1, 0, 0, 14),
     ],
-    "バランス"
+    "バランス",
   );
   const mealC = mkMeal(
     1200,
@@ -304,7 +305,7 @@ function makeDummyMeals() {
       mkProduct("dC2", "唐揚げ", "food", 380, 330, 20, 18, 2, 2),
       mkProduct("dC3", "スイーツ", "food", 300, 190, 3, 6, 0, 25),
     ],
-    "がっつり"
+    "がっつり",
   );
 
   return [mealA, mealB, mealC];
@@ -312,19 +313,32 @@ function makeDummyMeals() {
 
 export function MenuRecommend() {
   const navigate = useNavigate();
-  const { store, calorieTier, setMeal, resetFlow } = useOrder();
+  const { store, moodTag, calorieTier, setMeal, resetFlow } = useOrder();
   const [loading, setLoading] = useState(true);
   const [meals, setMeals] = useState([]);
+  const [errorMsg, setErrorMsg] = useState("");
 
   useEffect(() => {
     if (!store || !calorieTier) return;
 
     setMeals([]);
     setMeal(null);
+    setErrorMsg("");
     setLoading(true);
-    setMeals(makeDummyMeals());
-    setLoading(false);
-  }, [store, calorieTier, setMeals, setMeal]);
+    (async () => {
+      try {
+        const res = await apiSuggestMeals({ moodTag, calorieTier, topN: 3 });
+        setMeals(res?.meals ?? []);
+      } catch (e) {
+        // 開発/デモ用途: API呼び出し失敗時は見せるためフォールバック
+        console.error(e);
+        setErrorMsg("メニュー生成に失敗しました。デモ用の候補を表示します。");
+        setMeals(makeFallbackMeals());
+      } finally {
+        setLoading(false);
+      }
+    })();
+  }, [store, moodTag, calorieTier, setMeal]);
 
   if (!store || !calorieTier) {
     return <Navigate to="/store" replace />;
@@ -341,11 +355,7 @@ export function MenuRecommend() {
         </p>
 
         <div className="actions-row" style={{ marginTop: 12 }}>
-          <button
-            type="button"
-            onClick={() => navigate(-1)}
-            disabled={loading}
-          >
+          <button type="button" onClick={() => navigate(-1)} disabled={loading}>
             戻る
           </button>
           <button
@@ -361,6 +371,7 @@ export function MenuRecommend() {
         </div>
 
         {loading ? <p className="muted">メニューを生成しています…</p> : null}
+        {!loading && errorMsg ? <p className="muted">{errorMsg}</p> : null}
 
         {!loading && meals.length > 0 ? (
           <div
@@ -392,7 +403,7 @@ export function MenuRecommend() {
                   }
                 }}
               >
-                <div className="menu-summary card" style={{ marginTop: 0, background: "rgba(251, 146, 60, 0.1)" }}>
+                <div className="menu-summary card" style={{ marginTop: 0, background: "rgba(176,141,87,0.10)" }}>
                   <div className="menu-summary__row muted" style={{ fontSize: "0.85rem" }}>
                     <span>合計カロリー</span>
                     <span>{Math.round(m.totals.calories_kcal)} kcal</span>
