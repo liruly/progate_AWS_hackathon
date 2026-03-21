@@ -32,7 +32,10 @@ export function OrderProvider({ children }) {
 
   // サーバー側（スキャン処理）をソース・オブ・トゥルースとして同期する（デモではプロセス内保持）
   const syncTicketsRemaining = useCallback((nextRemaining) => {
-    setTicketsRemaining(Math.max(0, Number(nextRemaining) || 0));
+    const n = Number(nextRemaining);
+    // NaN / undefined を 0 にしない（誤って「0枚」表示になるのを防ぐ）
+    if (!Number.isFinite(n)) return;
+    setTicketsRemaining(Math.max(0, Math.floor(n)));
   }, []);
 
   const value = useMemo(
