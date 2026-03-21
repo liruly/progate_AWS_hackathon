@@ -4,10 +4,6 @@ import { AppShell } from "../components/AppShell.jsx";
 import { useOrder } from "../context/OrderContext.jsx";
 import { apiSuggestMeals } from "../api.js";
 
-function formatYen(n) {
-  return `${Math.round(n).toLocaleString("ja-JP")}円`;
-}
-
 const TIER_LABEL = { light: "ヘルシー", normal: "普通", hearty: "がっつり" };
 
 function makeFallbackMeals() {
@@ -144,14 +140,22 @@ export function MenuRecommend() {
         {!loading && errorMsg ? <p className="muted">{errorMsg}</p> : null}
 
         {!loading && meals.length > 0 ? (
-          <div className="menu-recommend-list">
+          <div style={{ display: "flex", flexDirection: "column", gap: "32px", marginTop: "24px" }}>
             {meals.map((m, idx) => (
               <div
                 key={idx}
                 role="button"
                 tabIndex={0}
                 aria-label="このセットを引き換える"
-                className="menu-recommend-row"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  gap: "16px",
+                  cursor: "pointer",
+                  paddingBottom: "16px",
+                  borderBottom: idx !== meals.length - 1 ? "1px solid #e5e7eb" : "none",
+                }}
                 onClick={() => {
                   setMeal(m);
                   navigate("/redeem");
@@ -164,23 +168,57 @@ export function MenuRecommend() {
                   }
                 }}
               >
-                <div className="menu-recommend-items">
+                <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", flex: 1 }}>
                   {m.mealItems.map((p, pidx) => (
-                    <div key={p.id} className="menu-recommend-item">
-                      <div className="menu-recommend-item__name">{p.name}</div>
-                      <div className="menu-recommend-item__reason">{m.explanations?.[pidx]?.reason}</div>
-                      <div className="menu-recommend-item__meta">
-                        <span>{formatYen(p.price_yen)}</span>
+                    <div
+                      key={p.id}
+                      style={{
+                        backgroundColor: "#f9fafb",
+                        border: "1px solid #e5e7eb",
+                        padding: "8px 12px",
+                        borderRadius: "8px",
+                        minWidth: "150px",
+                        flex: "1 1 150px",
+                      }}
+                    >
+                      <div style={{ fontWeight: "bold", marginBottom: "4px", color: "#374151", fontSize: "0.9rem" }}>
+                        {p.name}
+                      </div>
+                      <div style={{ color: "#6b7280", fontSize: "0.75rem", marginBottom: "8px", lineHeight: "1.4" }}>
+                        {m.explanations?.[pidx]?.reason}
+                      </div>
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          color: "#4b5563",
+                          fontWeight: "bold",
+                          fontSize: "0.85rem",
+                        }}
+                      >
+                        <span>{p.price_yen}円</span>
                         <span>{Math.round(p.nutrients.calories_kcal)} kcal</span>
                       </div>
                     </div>
                   ))}
                 </div>
 
-                <div className="menu-recommend-calorie-wrap">
-                  <div className="menu-recommend-calorie-box">
-                    <span className="menu-recommend-calorie-box__label">合計カロリー</span>
-                    <span className="menu-recommend-calorie-box__value">{Math.round(m.totals.calories_kcal)} kcal</span>
+                <div style={{ flexShrink: 0 }}>
+                  <div
+                    style={{
+                      width: "120px",
+                      height: "80px",
+                      backgroundColor: "#ffffff",
+                      border: "2px solid #f59e0b",
+                      borderRadius: "12px",
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <span style={{ fontSize: "0.75rem", color: "#666" }}>合計カロリー</span>
+                    <span style={{ fontWeight: "bold", color: "#444" }}>{Math.round(m.totals.calories_kcal)} kcal</span>
                   </div>
                 </div>
               </div>
