@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { apiCouponMock, apiCouponMockScan } from "../api.js";
 import { AppShell } from "../components/AppShell.jsx";
@@ -8,6 +8,7 @@ export function Redeem() {
   const { store, meal, ticketsRemaining, syncTicketsRemaining, resetFlow } = useOrder();
   const [loading, setLoading] = useState(false);
   const [redeemed, setRedeemed] = useState(false);
+  const [couponId, setCouponId] = useState(null);
 
   const handleRedeem = async () => {
     if (!meal || loading || redeemed || ticketsRemaining <= 0) return;
@@ -16,6 +17,7 @@ export function Redeem() {
       // デモ: バーコードスキャンを模擬し、成功したらチケットだけ減算する
       const ids = meal.mealItems.map((p) => p.id);
       const res = await apiCouponMock({ mealItems: ids });
+      setCouponId(res?.couponId ?? null);
       const scanRes = await apiCouponMockScan({ couponId: res?.couponId });
       if (scanRes?.used) {
         // デモ: 表示は常に「今の枚数 −1」（APIの残数が欠落/不整合でも 3→2→1→0 になる）
@@ -28,6 +30,12 @@ export function Redeem() {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (couponId) {
+      JsBarcode("#barcode", couponId);
+    }
+  }, [couponId]);
 
   if (!store) {
     return <Navigate to="/store" replace />;
@@ -54,6 +62,13 @@ export function Redeem() {
             残り <strong>{ticketsRemaining}</strong> 枚
           </p>
         </div>
+
+        {couponId && (
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <svg id="barcode"></svg>
+          </div>
+        )}
+
         <p className="muted" style={{ marginTop: 16 }}>
           {loading
             ? "スキャン中…"
