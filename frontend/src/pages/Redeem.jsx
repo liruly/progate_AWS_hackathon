@@ -1,39 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { apiCouponMock, apiCouponMockScan } from "../api.js";
 import { AppShell } from "../components/AppShell.jsx";
 import { useOrder } from "../context/OrderContext.jsx";
 
 export function Redeem() {
-  const { store, meal, ticketsRemaining, consumeTicket, resetFlow } = useOrder();
+  const { store, meal, ticketsRemaining, syncTicketsRemaining, resetFlow } = useOrder();
   const [loading, setLoading] = useState(false);
+  const [redeemed, setRedeemed] = useState(false);
 
-  useEffect(() => {
-    if (!meal) return;
-
-    let cancelled = false;
+  const handleRedeem = async () => {
+    if (!meal || loading || redeemed || ticketsRemaining <= 0) return;
     setLoading(true);
-    // デモ: スキャンはUIに出さず、成功したらチケットだけ減算する
-    const ids = meal.mealItems.map((p) => p.id);
-    apiCouponMock({ mealItems: ids })
-      .then((res) => apiCouponMockScan({ couponId: res?.couponId }))
-      .then((scanRes) => {
-        if (cancelled) return;
-        if (scanRes?.used) {
-          if (ticketsRemaining > 0) consumeTicket();
-        }
-      })
-      .catch(() => {
-        // UI上は何も出さない（デモ）
-      })
-      .finally(() => {
-        if (!cancelled) setLoading(false);
-      });
-
-    return () => {
-      cancelled = true;
-    };
-  }, [meal, consumeTicket, ticketsRemaining]);
+    try {
+      // デモ: バーコードスキャンを模擬し、成功したらチケットだけ減算する
+      const ids = meal.mealItems.map((p) => p.id);
+      const res = await apiCouponMock({ mealItems: ids });
+      const scanRes = await apiCouponMockScan({ couponId: res?.couponId });
+      if (scanRes?.used) {
+        syncTicketsRemaining(scanRes?.ticketsRemaining);
+        setRedeemed(true);
+      }
+    } catch {
+      // UI上は何も出さない（デモ）
+    } finally {
+      setLoading(false);
+    }
+  };
 
   if (!store) {
     return <Navigate to="/store" replace />;
@@ -61,8 +54,26 @@ export function Redeem() {
           </p>
         </div>
         <p className="muted" style={{ marginTop: 16 }}>
-          {loading ? "処理中…" : "（デモ）引き換え準備が完了しました。"}
+          {loading
+            ? "スキャン中…"
+            : redeemed
+              ? "引き換えが完了しました（デモ）。"
+              : ticketsRemaining <= 0
+                ? "引換チケットがありません。"
+                : "（デモ）店舗で引換券をスキャンしてください。"}
         </p>
+
+        <div style={{ marginTop: 16 }}>
+          <button
+            type="button"
+            className="primary"
+            onClick={handleRedeem}
+            disabled={loading || redeemed || ticketsRemaining <= 0}
+            style={{ display: "inline-block", marginTop: 12 }}
+          >
+            {ticketsRemaining <= 0 ? "引換チケットなし" : redeemed ? "引き換え済み" : "引換券をスキャン（デモ）"}
+          </button>
+        </div>
 
         <div style={{ marginTop: 16 }}>
           <Link
