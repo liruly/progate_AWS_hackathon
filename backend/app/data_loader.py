@@ -7,8 +7,8 @@ from typing import Any
 
 from .schemas import Product
 
-# 提案対象はコンビニの食品・飲料のみ（サプリ等は除外）
-ALLOWED_CATEGORIES = frozenset({"food", "beverage"})
+# 提案対象はコンビニの食品・飲料・軽食スナック（サプリ等は除外）
+ALLOWED_CATEGORIES = frozenset({"food", "beverage", "snack"})
 
 DATA_DIR = Path(__file__).parent / "data"
 PRODUCTS_PATH = DATA_DIR / "products.json"

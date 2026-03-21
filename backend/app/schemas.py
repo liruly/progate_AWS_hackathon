@@ -66,6 +66,10 @@ class SuggestMealsRequest(BaseModel):
     moodTag: str
     calorieTier: Optional[Literal["light", "normal", "hearty"]] = None
     topN: int = 3
+    # 大きいほど多様（スコアにノイズが乗るイメージ）。0 で従来どおり上位固定に近い。
+    temperature: float = Field(default=0.75, ge=0.0, le=3.0)
+    useVectorFeatures: bool = True
+    seed: Optional[int] = None  # デモ再現用（未指定なら非決定）
 
 
 class SuggestMealsResponse(BaseModel):

@@ -113,6 +113,9 @@ def api_suggest_meals(req: SuggestMealsRequest) -> SuggestMealsResponse:
             beam1=120,
             beam2=70,
             final_m=25,
+            temperature=req.temperature,
+            use_vector_features=req.useVectorFeatures,
+            seed=req.seed,
         )
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
